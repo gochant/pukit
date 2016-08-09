@@ -1,0 +1,24 @@
+mixin btn-toolbar(size)
+  - var cls = size ? 'btn-toolbar-' + size : undefined;
+  .btn-toolbar(class=[cls])&attributes(attributes)
+    block
+
+mixin btn-group
+  .btn-group&attributes(attributes)
+    block
+
+mixin btn(style, size)
+  - var styleCls = style ? 'btn-' + style : 'btn-default'
+  - var sizeCls = size ? 'btn-' + size : null
+  a.btn(class=[styleCls, sizeCls])&attributes(attributes)
+    block
+
+mixin btn-primary(size)
+  +btn('primary', size)&attributes(attributes)
+    block
+
+mixin btn-dropdown(icon, text, style, size)
+  +btn-group&attributes(attributes)
+    +btn-icon(icon, text, style, size)(data-toggle='dropdown')
+      +caret
+    block

@@ -1,0 +1,41 @@
+
+mixin btn-icon(icon, text, style, size)
+  +btn(style, size)&attributes(attributes)
+    +i-text(icon, text)
+    block
+
+mixin btn-refresh
+  +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
+    block
+
+mixin btn-search(text, action)
+  - text || (text = '查询')
+  +btn-icon('search', text)(data-action= action ? action : 'search')&attributes(attributes)
+    block
+
+mixin btn-detail
+  +btn-icon('file-text-o', '详情')(data-action='detail')&attributes(attributes)
+    block
+
+mixin btn-export
+  +btn-icon('download', '导出')&attributes(attributes)
+    block
+
+mixin btn-export-dropdown
+  +btn-group
+    +btn-export()(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
+      +caret
+    block
+
+mixin btn-more-dropdown
+  +btn-group
+    +btn-icon('chain', '更多数据')(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
+      +caret
+    block
+  
+
+mixin btn-search-icon
+  +btn-icon('search')&attributes(attributes)
+    block

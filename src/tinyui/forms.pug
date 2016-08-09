@@ -1,0 +1,40 @@
+//- 表单
+mixin invalid-tag(forName)
+  span.badge.invalid-tag(data-for=forName)
+
+mixin form-layout-t()
+  table.table.table-form-horizontal&attributes(attributes)
+    block
+     
+mixin row-t
+  tr&attributes(attributes)
+    block
+
+mixin col-t(colspan)
+  td.table-form-col(colspan=colspan)&attributes(attributes)
+    block
+    
+mixin form-layout-h
+  .form-horizontal&attributes(attributes)
+    block
+
+mixin row-h
+  .form-group.row&attributes(attributes)
+    block
+
+mixin col-h(num)
+  +col(num, 'xs')&attributes(attributes)
+    block
+
+//- form-validate
+	
+mixin form-validate(name)
+  form.data-validate-form(name=name)&attributes(attributes)
+    block
+
+//- 带验证表单
+mixin form-validate-layout-h(name)
+  +form-layout-h.data-validate-form(name=name)&attributes(attributes)
+    block
+
+

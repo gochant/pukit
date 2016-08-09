@@ -1,0 +1,632 @@
+mixin btn-toolbar(size)
+  - var cls = size ? 'btn-toolbar-' + size : undefined;
+  .btn-toolbar(class=[cls])&attributes(attributes)
+    block
+
+mixin btn-group
+  .btn-group&attributes(attributes)
+    block
+
+mixin btn(style, size)
+  - var styleCls = style ? 'btn-' + style : 'btn-default'
+  - var sizeCls = size ? 'btn-' + size : null
+  a.btn(class=[styleCls, sizeCls])&attributes(attributes)
+    block
+
+mixin btn-primary(size)
+  +btn('primary', size)&attributes(attributes)
+    block
+
+mixin btn-dropdown(icon, text, style, size)
+  +btn-group&attributes(attributes)
+    +btn-icon(icon, text, style, size)(data-toggle='dropdown')
+      +caret
+    block
+//- dropdown menu
+
+mixin dropdown-menu
+  ul.dropdown-menu&attributes(attributes)
+    block
+
+mixin menu-item(href, active)
+  +nav-item(href, active)&attributes(attributes)
+    block
+
+
+mixin control-label(text)
+  label.control-label&attributes(attributes)
+    | #{text}
+
+mixin control-label-for(name, model)
+  -
+    var field = model.fields[name]
+    var text = field.text
+  +control-label(text)&attributes(attributes)
+
+mixin form-control(type)
+  - type || (type = 'text')
+  input(type=type)&attributes(attributes)
+//- --------------- grid layout
+
+mixin row
+  .row
+    block
+
+mixin col(num, size)
+  - size || (size = 'sm')
+  - var cls = 'col-' + size + '-' + num
+  div(class=[cls])&attributes(attributes)
+    block
+
+//- ------------------- normal
+
+mixin container
+  .container&attributes(attributes)
+    block
+
+
+//- ---------------- helper
+
+mixin right
+  .pull-right
+    block
+
+mixin caret
+  span.caret
+//- input
+
+mixin input-group
+  .input-group&attributes(attributes)
+    block
+
+
+mixin input-group-addon
+  span.input-group-addon&attributes(attributes)
+    block
+
+mixin input-group-btn
+  span.input-group-btn&attributes(attributes)
+    block
+
+mixin input-group-with-btn(placeholder)
+  +input-group
+    +textbox()(placeholder=placeholder)
+    .input-group-btn
+      block
+
+mixin searchbox(placeholder, action)
+  +input-group-with-btn(placeholder)&attributes(attributes)
+    +btn-search-icon()(data-action=action)
+
+mixin searchbox-sm(placeholder, action)
+  +searchbox(placeholder, action).input-group-sm.input-md-width&attributes(attributes)
+    block
+mixin modal
+  .modal.fade&attributes(attributes)
+    .modal-dialog
+      .modal-content.fn-wnd
+
+mixin modal-close
+  button.close(data-dismiss='modal')
+    span ×
+
+mixin modal-heading(title, subtitle)
+  +container
+    +modal-close
+    .navbar-brand
+      | #{title} &nbsp;
+      small #{subtitle}
+//- navbar 导航条
+
+mixin navbar(container)
+  nav.navbar&attributes(attributes)
+    case container
+      when 'fluid'
+        .container-fluid
+          block
+      when true
+        .container
+          block
+      default
+        block
+
+mixin navbar-header
+  .navbar-header
+    block
+
+mixin navbar-brand(text, href)
+  a.navbar-brand(href=href) 
+    block
+    | #{text}
+
+mixin navbar-right
+  .navbar-right
+    block  
+
+
+//- nav
+//-----------
+
+//- @pugdoc
+  name: nav
+  decription: normal navigation
+  examples:
+    - +nav
+
+mixin nav
+  ul.nav(role='tablist')&attributes(attributes)
+    block
+
+
+//- @pugdoc
+  name: nav-item
+  description: nav item
+  arguments:
+    - {string} href - link address
+    - {boolean} active - is active
+    - {boolean} toggle - add `(data-toggle='tab')`
+  examples:
+    - +nav-item('#', true, true)
+
+mixin nav-item(href, active, toggle)
+  - if(href == null){ href = 'javascript:;'; }
+  - var cls = active === true ? 'active' : undefined
+    li.nav-item(role='presentation', class=cls)&attributes(attributes)
+      if toggle
+        a.nav-link(role='tab', data-toggle='tab', href=href)
+          block
+      else
+        a.nav-link(href=href)
+          block
+
+//- @pugdoc
+  name: nav-toggle-item
+  description: nav toggle item
+  arguments:
+    - {string} href - link address
+    - {boolean} active - is active
+  examples: |
+    include nav.pug
+    +nav-toggle-item('#', true)
+
+mixin nav-toggle-item(href, active)
+  +nav-item(href, active, true)&attributes(attributes)
+    block
+
+//- tabs
+
+mixin tabs
+  +nav('nav-tabs')
+
+mixin tab-item(href, active)
+  +nav-item(href, active, true)
+
+mixin tab-pane(id, active)
+  - var cls = active === true ? 'in active' : undefined
+  .tab-pane.fade(role='tabpanel', id=id, class=cls)&attributes(attributes)
+    block
+
+//- nav for
+//-------------
+
+mixin nav-items-for(items)
+  each item, idx in items
+    +nav-item(item.href, item.active, item.toggle) #{item.text}
+
+mixin nav-form-styled-for(items, name)
+  +nav-form(data-dynamic=name)
+    each item, idx in items
+      -
+        if(typeof item === 'string'){
+          item = {
+            text: item,
+            active: idx === 0
+          }
+        }
+      +nav-toggle-item(item.href, item.active) 
+        | #{idx + 1} #{item.text}
+        if item.name
+          +invalid-tag(item.name)
+
+//- nav styled
+//-----------
+
+mixin nav-navbar
+  +nav(class='navbar-nav')&attributes(attributes)
+    block
+
+mixin nav-vertical
+  +nav(class=['nav-pills', 'nav-stacked'])
+    block
+
+mixin nav-primary
+  +nav(class=['nav-pills', 'nav-primary'])
+    block
+
+mixin nav-underline(size)
+  +nav(class=['nav-pills',
+   'nav-underline',
+    size ? 'nav-' + size : undefined ])&attributes(attributes)
+    block
+
+mixin nav-content
+  +nav.nav-content.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-heavy
+  +nav.nav-heavy.nav-pills&attributes(attributes)
+    block
+
+mixin nav-form_style
+  +nav.nav-form.nav-stacked&attributes(attributes)
+    block
+
+
+//- panel
+
+mixin panel(type)
+  - type || (type = 'default')
+  .panel(class=['panel-' + type])&attributes(attributes)
+    block
+
+mixin panel-toolbar(size)
+  .panel-toolbar.clearfix(class=[size ? 'panel-toolbar-' + size : undefined])&attributes(attributes)
+    block
+
+mixin panel-body
+  .panel-body&attributes(attributes)
+    block
+
+//- panel with title
+mixin panel-t(title, type)
+  +panel(type)&attributes(attributes)
+    .panel-heading
+      h3.panel-title= title
+    block
+
+
+mixin textblock(name)
+  - var bind = name ? 'text: data.' + name : null;
+  span.form-control(data-bind=bind)&attributes(attributes)
+
+mixin textbox(name)
+  - var bind = name ? 'value: data.' + name : null;
+  input.form-control(type='text', data-bind=bind, name=name)&attributes(attributes)
+
+mixin textarea(name)
+  - var bind = 'value: data.' + name
+  textarea.form-control(data-bind=bind, name=name)&attributes(attributes)
+
+mixin checkbox(name, data)
+  - var bind = 'value: data.' + name
+  .checkbox
+    label
+      input(type='checkbox', data-bind=bind)&attributes(attributes)
+      | #{data.text}
+
+mixin checkboxlist(name, data)
+  - var bind = 'checked: data.' + name
+  .checkbox-group
+    each item, index in data.list
+      label.checkbox-inline
+        input(type='checkbox', data-bind=bind, value=item.value)&attributes(attributes)
+        | #{item.name}
+	    
+mixin combobox(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
+  select(data-role='combobox', data-text-field='name',
+   data-value-field='value', data-value-primitive='true', data-bind=bind)&attributes(attributes)
+
+mixin k-invalid-msg(name)
+  span.k-invalid-msg(data-for=name)
+
+mixin dropdownlist(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
+  select(data-role='dropdownlist', data-text-field='name',
+   data-value-field='value', data-value-primitive='true',
+   data-option-label='请选择...'
+    data-bind=bind, name=name)&attributes(attributes)
+  +k-invalid-msg(name)
+
+mixin datepicker(name)
+  - var bind = 'value: data.' + name
+  input(data-role='datepicker', data-bind=bind)&attributes(attributes)
+
+mixin select(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
+  select.form-control(data-text-field='name',
+   data-value-field='value', data-value-primitive='true', data-auto-bind='false', data-bind=bind, name=name)&attributes(attributes)
+
+mixin timepicker(name)
+  - var bind = 'value: data.' + name
+  input(data-role='timepicker', data-bind=bind)&attributes(attributes)
+
+mixin numeric(name)
+  - var bind = 'value: data.' + name
+  input(data-role='numerictextbox', data-bind=bind)&attributes(attributes)
+
+mixin multiselect(name)
+  - var bind = 'value: data.' + name
+  select(data-role='multiselect', data-text-field='name', multiple='multiple'
+   data-value-field='value', data-value-primitive='true', data-bind=bind)&attributes(attributes)
+
+mixin autocomplete(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
+  input(data-role='autocomplete', data-text-field='name',
+   data-value-field='value', data-bind=bind)&attributes(attributes)
+
+mixin date(name)
+  - var bind = 'date: data.' + name
+  input.form-control.date(readonly, data-bind=bind, name=name)&attributes(attributes)
+
+mixin editor(name, text, ui, data)
+  case ui
+    when 'textblock'
+      +textblock(name, data)&attributes(attributes)
+    when 'combobox'
+      +combobox(name, data)&attributes(attributes)
+    when 'dropdownlist'
+      +dropdownlist(name, data)&attributes(attributes)
+    when 'date'
+      +date(name, data)&attributes(attributes)
+    when 'datepicker'
+      +datepicker(name, data)&attributes(attributes)
+    when 'timepicker'
+      +timepicker(name, data)&attributes(attributes)
+    when 'numeric'
+      +numeric(name, data)&attributes(attributes)
+    when 'multiselect'
+      +multiselect(name, data)&attributes(attributes)
+    when 'autocomplete'
+      +autocomplete(name, data)&attributes(attributes)
+    when 'textarea'
+      +textarea(name, data)&attributes(attributes)
+    when 'checkbox'
+      +checkbox(name, data)&attributes(attributes)
+    when 'checkboxlist'
+      +checkboxlist(name, data)&attributes(attributes)
+    when 'select'
+      +select(name, data)&attributes(attributes)
+    when 'textbox'
+    default
+      +textbox(name, data)&attributes(attributes)
+
+mixin editor-for(name, model, data, style)
+  - 
+    var field = model.fields[name]
+    var uiHintMap = { 'string': 'textbox', 'date': 'date', 'number': 'numeric' }
+    if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
+    var text = field.displayName
+    var ui = field.uiHint
+
+    //- 将验证参数附加到HTML属性
+    attributes = Object.assign({}, field.validation, attributes)
+
+  //- 根据不同的样式类型，呈现不同的布局
+  case style
+    when 't'
+      +editor-t(name, text, ui, data)&attributes(attributes)
+    when 'h'
+      +editor-h(name, text, ui, data)&attributes(attributes)
+    default
+      +editor(name, text, ui, data)&attributes(attributes)
+
+
+mixin editor-for-t(name, model, data)
+  +editor-for(name, model, data, 't')&attributes(attributes)
+
+mixin editor-for-h(name, model, data)
+  +editor-for(name, model, data, 'h')&attributes(attributes)
+
+mixin editor-for-model(model, fields, data)
+  - 
+    if(fields == null){
+      fields = Object.keys(model.fields).filter(function(value){
+        return !model.fields[value].calculate
+      })
+    }
+    if(typeof fields === 'string'){
+      fields = model.views[fields]
+    }
+  each name in fields
+    +editor-for-h(name, model, data)
+
+//- editor table
+mixin editor-t(name, text, ui, data, colspan)
+  -
+    data || (data= { })
+    var labelCls = attributes.required ? ['required'] : ['']
+  +col-t(colspan)
+    +control-label(text)(class=labelCls)
+    +editor(name, text, ui, data)&attributes(attributes)
+
+mixin textblock-t(text, name, colspan)
+  +col-t(colspan)
+    +control-label(text)
+    +editor(name, text, 'textblock')
+
+//- editor horizontal
+mixin editor-h(name, text, ui, data)
+  -
+    data || (data= {})
+    var labelCls = attributes.required ? ['col-xs-3 required'] : ['col-xs-3']
+  +row-h
+    +control-label(text)(class=labelCls)
+    +col-h(9).form-control-container
+      +editor(name, text, ui, data)&attributes(attributes)
+
+
+mixin kendo-grid(columns, bind)
+  - var cstr = JSON.stringify(columns)
+  div(data-role='grid', 
+    data-columns!=columns, data-bind=bind)&attributes(attributes)
+
+mixin kendo-grid-for(model, fields, bind)
+  - 
+    if(fields == null){
+      fields = Object.keys(model.fields).filter(function(value){
+        return !model.fields[value].calculate
+      })
+    }
+    if(typeof fields === 'string'){
+      fields = model.views[fields]
+    }
+    var columns = fields.map(function(name){
+      var field = model.fields[name];
+      return {
+        field: name,
+        title: field.displayName,
+        format: '{0:' + field.displayFormat + '}'
+      }
+    })
+  +kendo-grid(columns, bind)&attributes(attributes)
+  
+//- ------------------ panel layout
+
+mixin box-topbar
+  .box-top.navbar.navbar-inverse.navbar-static-top.no-margin&attributes(attributes)
+    block
+
+mixin box-bottombar
+  .box-bottom.navbar.navbar-inverse.navbar-static-bottom.no-margin&attributes(attributes)
+    block
+
+mixin box-body
+  .box-body
+    block
+
+mixin box-wrapper
+  .box-wrapper.container
+    block
+
+mixin box-aside
+  .box-aside
+    block
+
+mixin box-content
+  .box-content
+    block
+
+mixin btn-icon(icon, text, style, size)
+  +btn(style, size)&attributes(attributes)
+    +i-text(icon, text)
+    block
+
+mixin btn-refresh
+  +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
+    block
+
+mixin btn-search(text, action)
+  - text || (text = '查询')
+  +btn-icon('search', text)(data-action= action ? action : 'search')&attributes(attributes)
+    block
+
+mixin btn-detail
+  +btn-icon('file-text-o', '详情')(data-action='detail')&attributes(attributes)
+    block
+
+mixin btn-export
+  +btn-icon('download', '导出')&attributes(attributes)
+    block
+
+mixin btn-export-dropdown
+  +btn-group
+    +btn-export()(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
+      +caret
+    block
+
+mixin btn-more-dropdown
+  +btn-group
+    +btn-icon('chain', '更多数据')(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
+      +caret
+    block
+  
+
+mixin btn-search-icon
+  +btn-icon('search')&attributes(attributes)
+    block
+//- -------------- desktop
+
+mixin sidebar
+  aside.aside.sidebar-inverse&attributes(attributes)
+    block
+
+mixin main
+  main.main
+    block
+
+
+//- 表单
+mixin invalid-tag(forName)
+  span.badge.invalid-tag(data-for=forName)
+
+mixin form-layout-t()
+  table.table.table-form-horizontal&attributes(attributes)
+    block
+     
+mixin row-t
+  tr&attributes(attributes)
+    block
+
+mixin col-t(colspan)
+  td.table-form-col(colspan=colspan)&attributes(attributes)
+    block
+    
+mixin form-layout-h
+  .form-horizontal&attributes(attributes)
+    block
+
+mixin row-h
+  .form-group.row&attributes(attributes)
+    block
+
+mixin col-h(num)
+  +col(num, 'xs')&attributes(attributes)
+    block
+
+//- form-validate
+	
+mixin form-validate(name)
+  form.data-validate-form(name=name)&attributes(attributes)
+    block
+
+//- 带验证表单
+mixin form-validate-layout-h(name)
+  +form-layout-h.data-validate-form(name=name)&attributes(attributes)
+    block
+
+
+
+//-------- 
+//- icon
+//--------
+mixin icon-fa(name, type)
+  - var typeCls = type == null ? null : 'fa-' + type;
+  i(class=['fa', 'fa-' + name, typeCls], aria-hidden='true')&attributes(attributes)
+
+mixin icon(name)
+  +icon-fa(name)&attributes(attributes)
+
+mixin icon-nav(name)
+  +icon-fa(name, 'fw')&attributes(attributes)
+
+//- icon and text
+mixin i-text(name, text)
+  +icon(name)&attributes(attributes)
+  if text
+    | &nbsp;
+    | #{text}
+  block
+
+mixin i-nav-text(name, text)
+  +icon-nav(name)&attributes(attributes)
+  | &nbsp;
+  | #{text}
+  block
+
+
+mixin panel-toolbar(size)
+  .panel-toolbar.clearfix(class=[size ? 'panel-toolbar-' + size : undefined])&attributes(attributes)
+    block

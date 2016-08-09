@@ -1,0 +1,22 @@
+//- panel
+
+mixin panel(type)
+  - type || (type = 'default')
+  .panel(class=['panel-' + type])&attributes(attributes)
+    block
+
+mixin panel-toolbar(size)
+  .panel-toolbar.clearfix(class=[size ? 'panel-toolbar-' + size : undefined])&attributes(attributes)
+    block
+
+mixin panel-body
+  .panel-body&attributes(attributes)
+    block
+
+//- panel with title
+mixin panel-t(title, type)
+  +panel(type)&attributes(attributes)
+    .panel-heading
+      h3.panel-title= title
+    block
+

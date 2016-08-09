@@ -1,0 +1,25 @@
+{
+  "name": "pukit",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gochant",
+  "license": "ISC",
+  "devDependencies": {
+    "front-matter": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-data": "^1.2.1",
+    "gulp-pug": "^3.0.4",
+    "gulp-rename": "^1.2.2",
+    "pug-doc": "^2.10.0",
+    "pug-doc-html": "^1.1.0",
+    "pug-doc-markdown": "^1.0.1"
+  }
+}

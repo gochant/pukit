@@ -1,0 +1,28 @@
+//- input
+
+mixin input-group
+  .input-group&attributes(attributes)
+    block
+
+
+mixin input-group-addon
+  span.input-group-addon&attributes(attributes)
+    block
+
+mixin input-group-btn
+  span.input-group-btn&attributes(attributes)
+    block
+
+mixin input-group-with-btn(placeholder)
+  +input-group
+    +textbox()(placeholder=placeholder)
+    .input-group-btn
+      block
+
+mixin searchbox(placeholder, action)
+  +input-group-with-btn(placeholder)&attributes(attributes)
+    +btn-search-icon()(data-action=action)
+
+mixin searchbox-sm(placeholder, action)
+  +searchbox(placeholder, action).input-group-sm.input-md-width&attributes(attributes)
+    block

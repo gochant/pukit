@@ -1,0 +1,118 @@
+
+//- nav
+//-----------
+
+//- @pugdoc
+  name: nav
+  decription: normal navigation
+  examples:
+    - +nav
+
+mixin nav
+  ul.nav(role='tablist')&attributes(attributes)
+    block
+
+
+//- @pugdoc
+  name: nav-item
+  description: nav item
+  arguments:
+    - {string} href - link address
+    - {boolean} active - is active
+    - {boolean} toggle - add `(data-toggle='tab')`
+  examples:
+    - +nav-item('#', true, true)
+
+mixin nav-item(href, active, toggle)
+  - if(href == null){ href = 'javascript:;'; }
+  - var cls = active === true ? 'active' : undefined
+    li.nav-item(role='presentation', class=cls)&attributes(attributes)
+      if toggle
+        a.nav-link(role='tab', data-toggle='tab', href=href)
+          block
+      else
+        a.nav-link(href=href)
+          block
+
+//- @pugdoc
+  name: nav-toggle-item
+  description: nav toggle item
+  arguments:
+    - {string} href - link address
+    - {boolean} active - is active
+  examples: |
+    include nav.pug
+    +nav-toggle-item('#', true)
+
+mixin nav-toggle-item(href, active)
+  +nav-item(href, active, true)&attributes(attributes)
+    block
+
+//- tabs
+
+mixin tabs
+  +nav('nav-tabs')
+
+mixin tab-item(href, active)
+  +nav-item(href, active, true)
+
+mixin tab-pane(id, active)
+  - var cls = active === true ? 'in active' : undefined
+  .tab-pane.fade(role='tabpanel', id=id, class=cls)&attributes(attributes)
+    block
+
+//- nav for
+//-------------
+
+mixin nav-items-for(items)
+  each item, idx in items
+    +nav-item(item.href, item.active, item.toggle) #{item.text}
+
+mixin nav-form-styled-for(items, name)
+  +nav-form(data-dynamic=name)
+    each item, idx in items
+      -
+        if(typeof item === 'string'){
+          item = {
+            text: item,
+            active: idx === 0
+          }
+        }
+      +nav-toggle-item(item.href, item.active) 
+        | #{idx + 1} #{item.text}
+        if item.name
+          +invalid-tag(item.name)
+
+//- nav styled
+//-----------
+
+mixin nav-navbar
+  +nav(class='navbar-nav')&attributes(attributes)
+    block
+
+mixin nav-vertical
+  +nav(class=['nav-pills', 'nav-stacked'])
+    block
+
+mixin nav-primary
+  +nav(class=['nav-pills', 'nav-primary'])
+    block
+
+mixin nav-underline(size)
+  +nav(class=['nav-pills',
+   'nav-underline',
+    size ? 'nav-' + size : undefined ])&attributes(attributes)
+    block
+
+mixin nav-content
+  +nav.nav-content.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-heavy
+  +nav.nav-heavy.nav-pills&attributes(attributes)
+    block
+
+mixin nav-form_style
+  +nav.nav-form.nav-stacked&attributes(attributes)
+    block
+

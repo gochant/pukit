@@ -1,0 +1,9 @@
+---
+model: person
+---
+extends ../layout.pug
+
+block body
+  div.hell #{model.fields.name.displayName}
+
+  +editor-for-model(model)

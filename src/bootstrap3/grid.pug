@@ -1,0 +1,17 @@
+//- --------------- grid layout
+
+mixin row
+  .row
+    block
+
+mixin col(num, size)
+  - size || (size = 'sm')
+  - var cls = 'col-' + size + '-' + num
+  div(class=[cls])&attributes(attributes)
+    block
+
+//- ------------------- normal
+
+mixin container
+  .container&attributes(attributes)
+    block

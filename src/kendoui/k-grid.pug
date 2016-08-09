@@ -1,0 +1,25 @@
+mixin kendo-grid(columns, bind)
+  - var cstr = JSON.stringify(columns)
+  div(data-role='grid', 
+    data-columns!=columns, data-bind=bind)&attributes(attributes)
+
+mixin kendo-grid-for(model, fields, bind)
+  - 
+    if(fields == null){
+      fields = Object.keys(model.fields).filter(function(value){
+        return !model.fields[value].calculate
+      })
+    }
+    if(typeof fields === 'string'){
+      fields = model.views[fields]
+    }
+    var columns = fields.map(function(name){
+      var field = model.fields[name];
+      return {
+        field: name,
+        title: field.displayName,
+        format: '{0:' + field.displayFormat + '}'
+      }
+    })
+  +kendo-grid(columns, bind)&attributes(attributes)
+  

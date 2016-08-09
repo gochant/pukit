@@ -1,0 +1,26 @@
+//- navbar 导航条
+
+mixin navbar(container)
+  nav.navbar&attributes(attributes)
+    case container
+      when 'fluid'
+        .container-fluid
+          block
+      when true
+        .container
+          block
+      default
+        block
+
+mixin navbar-header
+  .navbar-header
+    block
+
+mixin navbar-brand(text, href)
+  a.navbar-brand(href=href) 
+    block
+    | #{text}
+
+mixin navbar-right
+  .navbar-right
+    block  
