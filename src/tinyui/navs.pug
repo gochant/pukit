@@ -25,7 +25,7 @@ mixin nav-form
     block
 
 mixin nav-form-for(items)
-  +nav-form
+  +nav-form&attributes(attributes)
     each item, idx in items
       -
         if(typeof item === 'string'){

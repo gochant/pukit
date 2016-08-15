@@ -1,3 +1,73 @@
+mixin script-template
+  script(type='text/x-template')&attributes(attributes)
+    block
+
+mixin kendo-datatable(bind)
+  div(data-role='datatable', data-auto-bind='false', data-bind=bind)&attributes(attributes)
+    block
+
+mixin kendo-datatable-tpl-header
+  +script-template.tpl-header
+    tr&attributes(attributes)
+      block
+
+mixin kendo-datatable-tpl-template
+  +script-template.tpl-template
+    tr&attributes(attributes)
+      block
+        
+mixin th(display, type, prop, sortable)
+  - var cls = sortable === true ? ['sortable', type] : [type]
+  th(class=cls, data-type=type, data-prop=prop)&attributes(attributes)
+    | #{display}
+
+mixin td(type, prop)
+  -
+    var html = '#: ' + helper.getModelKendoExpression(type, prop) + ' #';
+  td(title=html)&attributes(attributes)
+    | #{html}
+
+mixin th-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    +th(field.displayName, field.type, field.rely || name, field.sortable)
+  block
+
+mixin td-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    - type = field.subtype || field.type
+    +td(type, name)
+  block
+
+mixin kendo-datatable-for(model, fields, bind)
+  - var idInterp = '#= '+ (model.id || 'Id') +' #' 
+  +kendo-datatable(bind)
+    +kendo-datatable-tpl-header
+      +th-for(model, fields) 
+    +kendo-datatable-tpl-template(data-id=idInterp)
+      +td-for(model, fields)
+mixin kendo-grid(columns, bind)
+  - var cstr = JSON.stringify(columns)
+  div(data-role='grid', 
+    data-columns!=columns, data-bind=bind)&attributes(attributes)
+
+mixin kendo-grid-for(model, fields, bind)
+  - 
+    fields = helper.getModelFields(model, fields)
+
+    var columns = fields.map(function(name){
+      var field = model.fields[name];
+      return {
+        field: name,
+        title: field.displayName,
+        format: '{0:' + field.displayFormat + '}'
+      }
+    })
+  +kendo-grid(columns, bind)&attributes(attributes)
+  
 mixin btn-toolbar(size)
   - var cls = size ? 'btn-toolbar-' + size : undefined;
   .btn-toolbar(class=[cls])&attributes(attributes)
@@ -32,6 +102,11 @@ mixin menu-item(href, active)
   +nav-item(href, active)&attributes(attributes)
     block
 
+
+mixin fieldset(title)
+  fieldset&attributes(attributes)
+    legend #{title}
+    block
 
 mixin control-label(text)
   label.control-label&attributes(attributes)
@@ -200,6 +275,10 @@ mixin tabs
 
 mixin tab-item(href, active)
   +nav-item(href, active, true)
+
+mixin tab-content
+  .tab-content&attributes(attributes)
+    block
 
 mixin tab-pane(id, active)
   - var cls = active === true ? 'in active' : undefined
@@ -420,75 +499,6 @@ mixin editor-h(name, text, ui, data)
       +editor(name, text, ui, data)&attributes(attributes)
 
 
-mixin script-template
-  script(type='text/x-template')&attributes(attributes)
-    block
-
-mixin kendo-datatable(bind)
-  div(data-role='datatable', data-auto-bind='false', data-bind=bind)&attributes(attributes)
-    block
-
-mixin kendo-datatable-tpl-header
-  +script-template.tpl-header
-    tr&attributes(attributes)
-      block
-
-mixin kendo-datatable-tpl-template
-  +script-template.tpl-template
-    tr&attributes(attributes)
-      block
-        
-mixin th(display, type, prop, sortable)
-  - var cls = sortable === true ? ['sortable', type] : [type]
-  th(class=cls, data-type=type, data-prop=prop)&attributes(attributes)
-    | #{display}
-
-mixin td(type, prop)
-  -
-    var html = '#: ' + helper.getModelKendoExpression(type, prop) + ' #';
-  td(title=html)&attributes(attributes)
-    | #{html}
-
-mixin th-for(model, fields)
-  - fields = helper.getModelFields(model, fields)
-  each name, idx in fields
-    - var field = model.fields[name]
-    +th(field.displayName, field.type, field.rely || name, field.sortable)
-  block
-
-mixin td-for(model, fields)
-  - fields = helper.getModelFields(model, fields)
-  each name, idx in fields
-    - var field = model.fields[name]
-    - type = field.subtype || field.type
-    +td(type, name)
-  block
-
-mixin kendo-datatable-for(model, fields, bind)
-  +kendo-datatable(bind)
-    +kendo-datatable-tpl-header
-      +th-for(model, fields) 
-    +kendo-datatable-tpl-template(data-id='#= Id #')
-      +td-for(model, fields)
-mixin kendo-grid(columns, bind)
-  - var cstr = JSON.stringify(columns)
-  div(data-role='grid', 
-    data-columns!=columns, data-bind=bind)&attributes(attributes)
-
-mixin kendo-grid-for(model, fields, bind)
-  - 
-    fields = helper.getModelFields(model, fields)
-
-    var columns = fields.map(function(name){
-      var field = model.fields[name];
-      return {
-        field: name,
-        title: field.displayName,
-        format: '{0:' + field.displayFormat + '}'
-      }
-    })
-  +kendo-grid(columns, bind)&attributes(attributes)
-  
 //- ------------------ panel layout
 
 mixin box-topbar
@@ -664,7 +674,7 @@ mixin nav-form
     block
 
 mixin nav-form-for(items)
-  +nav-form
+  +nav-form&attributes(attributes)
     each item, idx in items
       -
         if(typeof item === 'string'){

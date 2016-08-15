@@ -1,3 +1,8 @@
+mixin fieldset(title)
+  fieldset&attributes(attributes)
+    legend #{title}
+    block
+
 mixin control-label(text)
   label.control-label&attributes(attributes)
     | #{text}
