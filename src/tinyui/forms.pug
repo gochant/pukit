@@ -1,6 +1,6 @@
 //- 表单
-mixin invalid-tag(forName)
-  span.badge.invalid-tag(data-for=forName)
+mixin form-invalid-tag(forName)
+  span.badge.form-invalid-tag(data-for=forName)
 
 mixin form-layout-t()
   table.table.table-form-horizontal&attributes(attributes)
@@ -29,12 +29,14 @@ mixin col-h(num)
 //- form-validate
 	
 mixin form-validate(name)
-  form.data-validate-form(name=name)&attributes(attributes)
+  - name || (name = '')
+  form(data-validate-form=name)&attributes(attributes)
     block
 
 //- 带验证表单
 mixin form-validate-layout-h(name)
-  +form-layout-h.data-validate-form(name=name)&attributes(attributes)
+  - name || (name = '')
+  +form-layout-h(data-validate-form=name)&attributes(attributes)
     block
 
 

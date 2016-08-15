@@ -1,0 +1,51 @@
+mixin script-template
+  script(type='text/x-template')&attributes(attributes)
+    block
+
+mixin kendo-datatable(bind)
+  div(data-role='datatable', data-auto-bind='false', data-bind=bind)&attributes(attributes)
+    block
+
+mixin kendo-datatable-tpl-header
+  +script-template.tpl-header
+    tr&attributes(attributes)
+      block
+
+mixin kendo-datatable-tpl-template
+  +script-template.tpl-template
+    tr&attributes(attributes)
+      block
+        
+mixin th(display, type, prop, sortable)
+  - var cls = sortable === true ? ['sortable', type] : [type]
+  th(class=cls, data-type=type, data-prop=prop)&attributes(attributes)
+    | #{display}
+
+mixin td(type, prop)
+  -
+    var html = '#: ' + helper.getModelKendoExpression(type, prop) + ' #';
+  td(title=html)&attributes(attributes)
+    | #{html}
+
+mixin th-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    +th(field.displayName, field.type, field.rely || name, field.sortable)
+  block
+
+mixin td-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    - type = field.subtype || field.type
+    +td(type, name)
+  block
+
+mixin kendo-datatable-for(model, fields, bind)
+  - var idInterp = '#= '+ (model.id || 'Id') +' #' 
+  +kendo-datatable(bind)
+    +kendo-datatable-tpl-header
+      +th-for(model, fields) 
+    +kendo-datatable-tpl-template(data-id=idInterp)
+      +td-for(model, fields)

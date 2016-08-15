@@ -1,0 +1,39 @@
+
+//- nav styled
+//-----------
+
+mixin nav-primary
+  +nav(class=['nav-pills', 'nav-primary'])
+    block
+
+mixin nav-underline(size)
+  +nav(class=['nav-pills',
+   'nav-underline',
+    size ? 'nav-' + size : undefined ])&attributes(attributes)
+    block
+
+mixin nav-content
+  +nav.nav-content.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-heavy
+  +nav.nav-heavy.nav-pills&attributes(attributes)
+    block
+
+mixin nav-form
+  +nav.nav-form.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-form-for(items)
+  +nav-form
+    each item, idx in items
+      -
+        if(typeof item === 'string'){
+          item = {
+            text: item,
+            active: idx === 0
+          }
+        }
+      +nav-toggle-item(item.href, item.active) 
+        | #{idx + 1} #{item.text}
+        +form-invalid-tag(item.name)

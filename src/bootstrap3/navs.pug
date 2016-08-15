@@ -68,20 +68,6 @@ mixin nav-items-for(items)
   each item, idx in items
     +nav-item(item.href, item.active, item.toggle) #{item.text}
 
-mixin nav-form-styled-for(items, name)
-  +nav-form(data-dynamic=name)
-    each item, idx in items
-      -
-        if(typeof item === 'string'){
-          item = {
-            text: item,
-            active: idx === 0
-          }
-        }
-      +nav-toggle-item(item.href, item.active) 
-        | #{idx + 1} #{item.text}
-        if item.name
-          +invalid-tag(item.name)
 
 //- nav styled
 //-----------
@@ -92,27 +78,5 @@ mixin nav-navbar
 
 mixin nav-vertical
   +nav(class=['nav-pills', 'nav-stacked'])
-    block
-
-mixin nav-primary
-  +nav(class=['nav-pills', 'nav-primary'])
-    block
-
-mixin nav-underline(size)
-  +nav(class=['nav-pills',
-   'nav-underline',
-    size ? 'nav-' + size : undefined ])&attributes(attributes)
-    block
-
-mixin nav-content
-  +nav.nav-content.nav-stacked&attributes(attributes)
-    block
-
-mixin nav-heavy
-  +nav.nav-heavy.nav-pills&attributes(attributes)
-    block
-
-mixin nav-form_style
-  +nav.nav-form.nav-stacked&attributes(attributes)
     block
 

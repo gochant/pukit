@@ -7,35 +7,15 @@ var fm = require('front-matter');
 var concat = require('gulp-concat');
 var PugDocMarkdown = require('pug-doc-markdown');
 var PugDocHTML = require('pug-doc-html');
+var clean = require('gulp-clean');
 
+var templateHelper = require('./src/helper/templateHelper.js');
 var modelFilePath = './demo/model.js';
 var pugBaseUrl = './dist';
 var srcFiles = './demo/**/*.html.pug';
 var docDestJson = 'doc/doc.json';
 var docDestMarkdown = 'doc/doc.md';
 var docDestHtml = 'doc/output.html';
-
-
-var allPugs = [
-    './src/bootstrap3/buttons.pug',
-    './src/bootstrap3/dropdown.pug',
-    './src/bootstrap3/forms.pug',
-    './src/bootstrap3/grid.pug',
-    './src/bootstrap3/helper.pug',
-    './src/bootstrap3/input.pug',
-    './src/bootstrap3/modal.pug',
-    './src/bootstrap3/navbar.pug',
-    './src/bootstrap3/navs.pug',
-    './src/bootstrap3/panels.pug',
-    './src/tinyui/box.pug',
-    './src/tinyui/desktop.pug',
-    './src/tinyui/forms.pug',
-    './src/tinyui/icons.pug',
-    './src/tinyui/panels.pug',
-    './src/tinyui/buttons.pug',
-    './src/kendoui/k-grid.pug',
-    './src/ext/editor.pug'
-];
 
 function getContextName(path) {
     var r = /.*[\/|\\]([\w|-]*)[\/|\\][^\/]*$/g.exec(path);
@@ -44,7 +24,13 @@ function getContextName(path) {
     }
     return null;
 }
-gulp.task('build', function () {
+
+gulp.task('clean', function () {
+    return gulp.src('./dist/', { read: false })
+        .pipe(clean());
+});
+
+gulp.task('demo', ['release'], function () {
     var modelProvider = require(modelFilePath);
 
     gulp.src(srcFiles)
@@ -59,7 +45,8 @@ gulp.task('build', function () {
         var result = {
             globalModel: modelProvider,
             contextModel: contextModel,
-            model: contextModel && contextModel[content.attributes.model]
+            model: contextModel && contextModel[content.attributes.model],
+            helper: templateHelper
         };
         return result;
     }))

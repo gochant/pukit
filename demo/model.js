@@ -6,12 +6,24 @@ var models = {
             fields: {
                 name: {
                     displayName: 'Name',
-                    type: 'string'
+                    type: 'string',
+                    sortable: true
                 },
                 birth: {
                     displayName: 'Birthday',
                     type: 'date'
+                },
+                gender: {
+                    displayName: 'Gender',
+                    type: 'string'
+                },
+                isActive: {
+                    displayName: 'Is Active',
+                    type: 'boolean'
                 }
+            },
+            views: {
+                'list': ['name', 'birth', 'isActive']
             }
         }
     }

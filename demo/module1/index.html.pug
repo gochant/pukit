@@ -6,4 +6,8 @@ extends ../layout.pug
 block body
   div.hell #{model.fields.name.displayName}
 
+  +form-validate
+
   +editor-for-model(model)
+
+  +kendo-datatable-for(model, 'list', 'data-bind: source: data.People')

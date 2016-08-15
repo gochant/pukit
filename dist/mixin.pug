@@ -213,20 +213,6 @@ mixin nav-items-for(items)
   each item, idx in items
     +nav-item(item.href, item.active, item.toggle) #{item.text}
 
-mixin nav-form-styled-for(items, name)
-  +nav-form(data-dynamic=name)
-    each item, idx in items
-      -
-        if(typeof item === 'string'){
-          item = {
-            text: item,
-            active: idx === 0
-          }
-        }
-      +nav-toggle-item(item.href, item.active) 
-        | #{idx + 1} #{item.text}
-        if item.name
-          +invalid-tag(item.name)
 
 //- nav styled
 //-----------
@@ -237,28 +223,6 @@ mixin nav-navbar
 
 mixin nav-vertical
   +nav(class=['nav-pills', 'nav-stacked'])
-    block
-
-mixin nav-primary
-  +nav(class=['nav-pills', 'nav-primary'])
-    block
-
-mixin nav-underline(size)
-  +nav(class=['nav-pills',
-   'nav-underline',
-    size ? 'nav-' + size : undefined ])&attributes(attributes)
-    block
-
-mixin nav-content
-  +nav.nav-content.nav-stacked&attributes(attributes)
-    block
-
-mixin nav-heavy
-  +nav.nav-heavy.nav-pills&attributes(attributes)
-    block
-
-mixin nav-form_style
-  +nav.nav-form.nav-stacked&attributes(attributes)
     block
 
 
@@ -456,6 +420,56 @@ mixin editor-h(name, text, ui, data)
       +editor(name, text, ui, data)&attributes(attributes)
 
 
+mixin script-template
+  script(type='text/x-template')&attributes(attributes)
+    block
+
+mixin kendo-datatable(bind)
+  div(data-role='datatable', data-auto-bind='false', data-bind=bind)&attributes(attributes)
+    block
+
+mixin kendo-datatable-tpl-header
+  +script-template.tpl-header
+    tr&attributes(attributes)
+      block
+
+mixin kendo-datatable-tpl-template
+  +script-template.tpl-template
+    tr&attributes(attributes)
+      block
+        
+mixin th(display, type, prop, sortable)
+  - var cls = sortable === true ? ['sortable', type] : [type]
+  th(class=cls, data-type=type, data-prop=prop)&attributes(attributes)
+    | #{display}
+
+mixin td(type, prop)
+  -
+    var html = '#: ' + helper.getModelKendoExpression(type, prop) + ' #';
+  td(title=html)&attributes(attributes)
+    | #{html}
+
+mixin th-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    +th(field.displayName, field.type, field.rely || name, field.sortable)
+  block
+
+mixin td-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    - type = field.subtype || field.type
+    +td(type, name)
+  block
+
+mixin kendo-datatable-for(model, fields, bind)
+  +kendo-datatable(bind)
+    +kendo-datatable-tpl-header
+      +th-for(model, fields) 
+    +kendo-datatable-tpl-template(data-id='#= Id #')
+      +td-for(model, fields)
 mixin kendo-grid(columns, bind)
   - var cstr = JSON.stringify(columns)
   div(data-role='grid', 
@@ -463,14 +477,8 @@ mixin kendo-grid(columns, bind)
 
 mixin kendo-grid-for(model, fields, bind)
   - 
-    if(fields == null){
-      fields = Object.keys(model.fields).filter(function(value){
-        return !model.fields[value].calculate
-      })
-    }
-    if(typeof fields === 'string'){
-      fields = model.views[fields]
-    }
+    fields = helper.getModelFields(model, fields)
+
     var columns = fields.map(function(name){
       var field = model.fields[name];
       return {
@@ -559,8 +567,8 @@ mixin main
 
 
 //- 表单
-mixin invalid-tag(forName)
-  span.badge.invalid-tag(data-for=forName)
+mixin form-invalid-tag(forName)
+  span.badge.form-invalid-tag(data-for=forName)
 
 mixin form-layout-t()
   table.table.table-form-horizontal&attributes(attributes)
@@ -589,12 +597,14 @@ mixin col-h(num)
 //- form-validate
 	
 mixin form-validate(name)
-  form.data-validate-form(name=name)&attributes(attributes)
+  - name || (name = '')
+  form(data-validate-form=name)&attributes(attributes)
     block
 
 //- 带验证表单
 mixin form-validate-layout-h(name)
-  +form-layout-h.data-validate-form(name=name)&attributes(attributes)
+  - name || (name = '')
+  +form-layout-h(data-validate-form=name)&attributes(attributes)
     block
 
 
@@ -627,6 +637,45 @@ mixin i-nav-text(name, text)
   block
 
 
+
+//- nav styled
+//-----------
+
+mixin nav-primary
+  +nav(class=['nav-pills', 'nav-primary'])
+    block
+
+mixin nav-underline(size)
+  +nav(class=['nav-pills',
+   'nav-underline',
+    size ? 'nav-' + size : undefined ])&attributes(attributes)
+    block
+
+mixin nav-content
+  +nav.nav-content.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-heavy
+  +nav.nav-heavy.nav-pills&attributes(attributes)
+    block
+
+mixin nav-form
+  +nav.nav-form.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-form-for(items)
+  +nav-form
+    each item, idx in items
+      -
+        if(typeof item === 'string'){
+          item = {
+            text: item,
+            active: idx === 0
+          }
+        }
+      +nav-toggle-item(item.href, item.active) 
+        | #{idx + 1} #{item.text}
+        +form-invalid-tag(item.name)
 mixin panel-toolbar(size)
   .panel-toolbar.clearfix(class=[size ? 'panel-toolbar-' + size : undefined])&attributes(attributes)
     block

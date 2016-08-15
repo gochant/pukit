@@ -5,14 +5,8 @@ mixin kendo-grid(columns, bind)
 
 mixin kendo-grid-for(model, fields, bind)
   - 
-    if(fields == null){
-      fields = Object.keys(model.fields).filter(function(value){
-        return !model.fields[value].calculate
-      })
-    }
-    if(typeof fields === 'string'){
-      fields = model.views[fields]
-    }
+    fields = helper.getModelFields(model, fields)
+
     var columns = fields.map(function(name){
       var field = model.fields[name];
       return {
