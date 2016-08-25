@@ -42,10 +42,14 @@ mixin td-for(model, fields)
     +td(type, name)
   block
 
-mixin kendo-datatable-for(model, fields, bind)
+mixin kendo-datatable-for(model, fields, bind, hasPager)
   - var idInterp = '#= '+ (model.id || 'Id') +' #' 
+  - hasPager || (hasPager = false)
   +kendo-datatable(bind)
     +kendo-datatable-tpl-header
       +th-for(model, fields) 
     +kendo-datatable-tpl-template(data-id=idInterp)
       +td-for(model, fields)
+
+mixin kendo-pager(bind)
+  div(data-role='pager', data-bind=bind)&attributes(attributes)

@@ -1,11 +1,28 @@
 
+//- 带图标的按钮
 mixin btn-icon(icon, text, style, size)
   +btn(style, size)&attributes(attributes)
     +i-text(icon, text)
     block
 
+mixin btn-icon-action(icon, text, action, defaultAction)
+  - action || (action = defaultAction)
+  +btn-icon(icon, text)(data-action=action)&attributes(attributes)
+    block
+
+mixin btn-edit(action)
+  +btn-icon-action('edit', '编辑', action, 'edit')
+
+mixin btn-remove(action)
+  +btn-icon-action('trash', '删除', action, 'remove')
+
 mixin btn-refresh
   +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
+    block
+
+mixin btn-add(action)
+  - action || (action = 'add')
+  +btn-icon('plus', '添加')(data-action=action)&attributes(attributes)
     block
 
 mixin btn-search(text, action)
