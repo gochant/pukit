@@ -52,4 +52,4 @@ mixin kendo-datatable-for(model, fields, bind, hasPager)
       +td-for(model, fields)
 
 mixin kendo-pager(bind)
-  div(data-role='pager', data-bind=bind)&attributes(attributes)
+  div(data-role='pager', data-auto-bind='false', data-bind=bind)&attributes(attributes)

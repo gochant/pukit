@@ -20,7 +20,11 @@ mixin panel-t(title, type)
       h3.panel-title= title
     block
 
+mixin panel-heading
+  .panel-heading&attributes(attributes)
+    block
+
 mixin panel-footer
-  .panel-footer
+  .panel-footer&attributes(attributes)
     block
 
