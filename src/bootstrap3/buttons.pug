@@ -7,18 +7,11 @@ mixin btn-group
   .btn-group&attributes(attributes)
     block
 
-mixin btn(style, size)
-  - var styleCls = style ? 'btn-' + style : 'btn-default'
-  - var sizeCls = size ? 'btn-' + size : null
-  a.btn(class=[styleCls, sizeCls])&attributes(attributes)
+mixin btn
+  - if(attributes['class'] == null) { attributes = { 'class': ['btn-default']  } }
+  a.btn&attributes(attributes)
     block
 
-mixin btn-primary(size)
-  +btn('primary', size)&attributes(attributes)
-    block
-
-mixin btn-dropdown(icon, text, style, size)
-  +btn-group&attributes(attributes)
-    +btn-icon(icon, text, style, size)(data-toggle='dropdown')
-      +caret
+mixin btn-primary
+  +btn.btn-primary&attributes(attributes)
     block

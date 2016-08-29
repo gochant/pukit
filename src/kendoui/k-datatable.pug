@@ -43,7 +43,7 @@ mixin td-for(model, fields)
   block
 
 mixin kendo-datatable-for(model, fields, bind, hasPager)
-  - var idInterp = '#= '+ (model.id || 'Id') +' #' 
+  - var idInterp = '#= '+ (model.id || 'id') +' #' 
   - hasPager || (hasPager = false)
   +kendo-datatable(bind)
     +kendo-datatable-tpl-header

@@ -1,28 +1,36 @@
 
 //- 带图标的按钮
-mixin btn-icon(icon, text, style, size)
-  +btn(style, size)&attributes(attributes)
+mixin btn-icon(icon, text)
+  +btn&attributes(attributes)
     +i-text(icon, text)
     block
 
-mixin btn-icon-action(icon, text, action, defaultAction)
+mixin btn-icon-action(icon, text, action, defaultAction, defaultText)
   - action || (action = defaultAction)
+  - text || (text = defaultText)
   +btn-icon(icon, text)(data-action=action)&attributes(attributes)
     block
 
+mixin btn-dropdown(icon, text)
+  +btn-group&attributes(attributes)
+    +btn-icon(icon, text)(data-toggle='dropdown')
+      +caret
+    block
+
 mixin btn-edit(action)
-  +btn-icon-action('edit', '编辑', action, 'edit')
+  +btn-icon-action('edit', '编辑', action, 'edit')&attributes(attributes)
 
 mixin btn-remove(action)
-  +btn-icon-action('trash', '删除', action, 'remove')
+  +btn-icon-action('trash', '删除', action, 'remove')&attributes(attributes)
 
 mixin btn-refresh
   +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
     block
 
-mixin btn-add(action)
+mixin btn-add(action, text)
   - action || (action = 'add')
-  +btn-icon('plus', '添加')(data-action=action)&attributes(attributes)
+  - text || (text = '添加')
+  +btn-icon('plus', text)(data-action=action)&attributes(attributes)
     block
 
 mixin btn-search(text, action)
@@ -55,4 +63,8 @@ mixin btn-more-dropdown
 
 mixin btn-search-icon
   +btn-icon('search')&attributes(attributes)
+    block
+
+mixin btn-save(action, text)
+  +btn-icon-action('floppy-o', text, action, 'save', '保存').btn-primary&attributes(attributes)
     block

@@ -14,9 +14,9 @@ mixin input-group-btn
     block
 
 mixin input-group-with-btn(placeholder)
-  +input-group
+  +input-group&attributes(attributes)
     +textbox()(placeholder=placeholder)
-    .input-group-btn
+    +input-group-btn
       block
 
 mixin searchbox(placeholder, action)
