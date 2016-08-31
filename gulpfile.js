@@ -9,7 +9,7 @@ var PugDocMarkdown = require('pug-doc-markdown');
 var PugDocHTML = require('pug-doc-html');
 var clean = require('gulp-clean');
 
-var templateHelper = require('./src/helper/templateHelper.js');
+var templateHelper = require('./src/js/templateHelper.js');
 var modelFilePath = './demo/model.js';
 var pugBaseUrl = './dist';
 var srcFiles = './demo/**/*.html.pug';

@@ -1,73 +1,3 @@
-mixin script-template
-  script(type='text/x-template')&attributes(attributes)
-    block
-
-mixin kendo-datatable(bind)
-  div(data-role='datatable', data-auto-bind='false', data-bind=bind)&attributes(attributes)
-    block
-
-mixin kendo-datatable-tpl-header
-  +script-template.tpl-header
-    tr&attributes(attributes)
-      block
-
-mixin kendo-datatable-tpl-template
-  +script-template.tpl-template
-    tr&attributes(attributes)
-      block
-        
-mixin th(display, type, prop, sortable)
-  - var cls = sortable === true ? ['sortable', type] : [type]
-  th(class=cls, data-type=type, data-prop=prop)&attributes(attributes)
-    | #{display}
-
-mixin td(type, prop)
-  -
-    var html = '#: ' + helper.getModelKendoExpression(type, prop) + ' #';
-  td(title=html)&attributes(attributes)
-    | #{html}
-
-mixin th-for(model, fields)
-  - fields = helper.getModelFields(model, fields)
-  each name, idx in fields
-    - var field = model.fields[name]
-    +th(field.displayName, field.type, field.rely || name, field.sortable)
-  block
-
-mixin td-for(model, fields)
-  - fields = helper.getModelFields(model, fields)
-  each name, idx in fields
-    - var field = model.fields[name]
-    - type = field.subtype || field.type
-    +td(type, name)
-  block
-
-mixin kendo-datatable-for(model, fields, bind)
-  - var idInterp = '#= '+ (model.id || 'Id') +' #' 
-  +kendo-datatable(bind)
-    +kendo-datatable-tpl-header
-      +th-for(model, fields) 
-    +kendo-datatable-tpl-template(data-id=idInterp)
-      +td-for(model, fields)
-mixin kendo-grid(columns, bind)
-  - var cstr = JSON.stringify(columns)
-  div(data-role='grid', 
-    data-columns!=columns, data-bind=bind)&attributes(attributes)
-
-mixin kendo-grid-for(model, fields, bind)
-  - 
-    fields = helper.getModelFields(model, fields)
-
-    var columns = fields.map(function(name){
-      var field = model.fields[name];
-      return {
-        field: name,
-        title: field.displayName,
-        format: '{0:' + field.displayFormat + '}'
-      }
-    })
-  +kendo-grid(columns, bind)&attributes(attributes)
-  
 mixin btn-toolbar(size)
   - var cls = size ? 'btn-toolbar-' + size : undefined;
   .btn-toolbar(class=[cls])&attributes(attributes)
@@ -77,20 +7,13 @@ mixin btn-group
   .btn-group&attributes(attributes)
     block
 
-mixin btn(style, size)
-  - var styleCls = style ? 'btn-' + style : 'btn-default'
-  - var sizeCls = size ? 'btn-' + size : null
-  a.btn(class=[styleCls, sizeCls])&attributes(attributes)
+mixin btn
+  - if(attributes['class'] == null) { attributes = { 'class': ['btn-default']  } }
+  a.btn&attributes(attributes)
     block
 
-mixin btn-primary(size)
-  +btn('primary', size)&attributes(attributes)
-    block
-
-mixin btn-dropdown(icon, text, style, size)
-  +btn-group&attributes(attributes)
-    +btn-icon(icon, text, style, size)(data-toggle='dropdown')
-      +caret
+mixin btn-primary
+  +btn.btn-primary&attributes(attributes)
     block
 //- dropdown menu
 
@@ -164,9 +87,9 @@ mixin input-group-btn
     block
 
 mixin input-group-with-btn(placeholder)
-  +input-group
+  +input-group&attributes(attributes)
     +textbox()(placeholder=placeholder)
-    .input-group-btn
+    +input-group-btn
       block
 
 mixin searchbox(placeholder, action)
@@ -265,7 +188,7 @@ mixin nav-item(href, active, toggle)
     +nav-toggle-item('#', true)
 
 mixin nav-toggle-item(href, active)
-  +nav-item(href, active, true)&attributes(attributes)
+  +nav-item(href || '#', active, true)&attributes(attributes)
     block
 
 //- tabs
@@ -325,6 +248,120 @@ mixin panel-t(title, type)
   +panel(type)&attributes(attributes)
     .panel-heading
       h3.panel-title= title
+    block
+
+mixin panel-heading
+  .panel-heading&attributes(attributes)
+    block
+
+mixin panel-footer
+  .panel-footer&attributes(attributes)
+    block
+
+
+//- ------------------ panel layout
+
+mixin box-topbar
+  .box-top.navbar.navbar-inverse.navbar-static-top.no-margin&attributes(attributes)
+    block
+
+mixin box-bottombar
+  .box-bottom.navbar.navbar-inverse.navbar-static-bottom.no-margin&attributes(attributes)
+    block
+
+mixin box-body
+  .box-body
+    block
+
+mixin box-wrapper
+  .box-wrapper.container
+    block
+
+mixin box-aside
+  .box-aside
+    block
+
+mixin box-content
+  .box-content
+    block
+
+//- 带图标的按钮
+mixin btn-icon(icon, text)
+  +btn&attributes(attributes)
+    +i-text(icon, text)
+    block
+
+mixin btn-icon-action(icon, text, action, defaultAction, defaultText)
+  - action || (action = defaultAction)
+  - text || (text = defaultText)
+  +btn-icon(icon, text)(data-action=action)&attributes(attributes)
+    block
+
+mixin btn-dropdown(icon, text)
+  +btn-group&attributes(attributes)
+    +btn-icon(icon, text)(data-toggle='dropdown')
+      +caret
+    block
+
+mixin btn-edit(action)
+  +btn-icon-action('edit', '编辑', action, 'edit')&attributes(attributes)
+
+mixin btn-remove(action)
+  +btn-icon-action('trash', '删除', action, 'remove')&attributes(attributes)
+
+mixin btn-refresh
+  +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
+    block
+
+mixin btn-add(action, text)
+  - action || (action = 'add')
+  - text || (text = '添加')
+  +btn-icon('plus', text)(data-action=action)&attributes(attributes)
+    block
+
+mixin btn-search(text, action)
+  - text || (text = '查询')
+  +btn-icon('search', text)(data-action= action ? action : 'search')&attributes(attributes)
+    block
+
+mixin btn-detail
+  +btn-icon('file-text-o', '详情')(data-action='detail')&attributes(attributes)
+    block
+
+mixin btn-export
+  +btn-icon('download', '导出')&attributes(attributes)
+    block
+
+mixin btn-export-dropdown
+  +btn-group
+    +btn-export()(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
+      +caret
+    block
+
+mixin btn-more-dropdown
+  +btn-group
+    +btn-icon('chain', '更多数据')(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
+      +caret
+    block
+  
+
+mixin btn-search-icon
+  +btn-icon('search')&attributes(attributes)
+    block
+
+mixin btn-save(action, text)
+  +btn-icon-action('floppy-o', text, action, 'save', '保存').btn-primary&attributes(attributes)
+    block
+//- -------------- desktop
+
+mixin sidebar
+  aside.aside.sidebar-inverse&attributes(attributes)
+    block
+
+mixin main
+  main.main
     block
 
 
@@ -499,83 +536,6 @@ mixin editor-h(name, text, ui, data)
       +editor(name, text, ui, data)&attributes(attributes)
 
 
-//- ------------------ panel layout
-
-mixin box-topbar
-  .box-top.navbar.navbar-inverse.navbar-static-top.no-margin&attributes(attributes)
-    block
-
-mixin box-bottombar
-  .box-bottom.navbar.navbar-inverse.navbar-static-bottom.no-margin&attributes(attributes)
-    block
-
-mixin box-body
-  .box-body
-    block
-
-mixin box-wrapper
-  .box-wrapper.container
-    block
-
-mixin box-aside
-  .box-aside
-    block
-
-mixin box-content
-  .box-content
-    block
-
-mixin btn-icon(icon, text, style, size)
-  +btn(style, size)&attributes(attributes)
-    +i-text(icon, text)
-    block
-
-mixin btn-refresh
-  +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
-    block
-
-mixin btn-search(text, action)
-  - text || (text = '查询')
-  +btn-icon('search', text)(data-action= action ? action : 'search')&attributes(attributes)
-    block
-
-mixin btn-detail
-  +btn-icon('file-text-o', '详情')(data-action='detail')&attributes(attributes)
-    block
-
-mixin btn-export
-  +btn-icon('download', '导出')&attributes(attributes)
-    block
-
-mixin btn-export-dropdown
-  +btn-group
-    +btn-export()(data-toggle='dropdown')&attributes(attributes)
-      | &nbsp;
-      +caret
-    block
-
-mixin btn-more-dropdown
-  +btn-group
-    +btn-icon('chain', '更多数据')(data-toggle='dropdown')&attributes(attributes)
-      | &nbsp;
-      +caret
-    block
-  
-
-mixin btn-search-icon
-  +btn-icon('search')&attributes(attributes)
-    block
-//- -------------- desktop
-
-mixin sidebar
-  aside.aside.sidebar-inverse&attributes(attributes)
-    block
-
-mixin main
-  main.main
-    block
-
-
 //- 表单
 mixin form-invalid-tag(forName)
   span.badge.form-invalid-tag(data-for=forName)
@@ -689,3 +649,77 @@ mixin nav-form-for(items)
 mixin panel-toolbar(size)
   .panel-toolbar.clearfix(class=[size ? 'panel-toolbar-' + size : undefined])&attributes(attributes)
     block
+mixin script-template
+  script(type='text/x-template')&attributes(attributes)
+    block
+
+mixin kendo-datatable(bind)
+  div(data-role='datatable', data-auto-bind='false', data-bind=bind)&attributes(attributes)
+    block
+
+mixin kendo-datatable-tpl-header
+  +script-template.tpl-header
+    tr&attributes(attributes)
+      block
+
+mixin kendo-datatable-tpl-template
+  +script-template.tpl-template
+    tr&attributes(attributes)
+      block
+        
+mixin th(display, type, prop, sortable)
+  - var cls = sortable === true ? ['sortable', type] : [type]
+  th(class=cls, data-type=type, data-prop=prop)&attributes(attributes)
+    | #{display}
+
+mixin td(type, prop)
+  -
+    var html = '#: ' + helper.getModelKendoExpression(type, prop) + ' #';
+  td(title=html)&attributes(attributes)
+    | #{html}
+
+mixin th-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    +th(field.displayName, field.type, field.rely || name, field.sortable)
+  block
+
+mixin td-for(model, fields)
+  - fields = helper.getModelFields(model, fields)
+  each name, idx in fields
+    - var field = model.fields[name]
+    - type = field.subtype || field.type
+    +td(type, name)
+  block
+
+mixin kendo-datatable-for(model, fields, bind, hasPager)
+  - var idInterp = '#= '+ (model.id || 'id') +' #' 
+  - hasPager || (hasPager = false)
+  +kendo-datatable(bind)
+    +kendo-datatable-tpl-header
+      +th-for(model, fields) 
+    +kendo-datatable-tpl-template(data-id=idInterp)
+      +td-for(model, fields)
+
+mixin kendo-pager(bind)
+  div(data-role='pager', data-auto-bind='false', data-bind=bind)&attributes(attributes)
+mixin kendo-grid(columns, bind)
+  - var cstr = JSON.stringify(columns)
+  div(data-role='grid', 
+    data-columns!=columns, data-bind=bind)&attributes(attributes)
+
+mixin kendo-grid-for(model, fields, bind)
+  - 
+    fields = helper.getModelFields(model, fields)
+
+    var columns = fields.map(function(name){
+      var field = model.fields[name];
+      return {
+        field: name,
+        title: field.displayName,
+        format: '{0:' + field.displayFormat + '}'
+      }
+    })
+  +kendo-grid(columns, bind)&attributes(attributes)
+  
