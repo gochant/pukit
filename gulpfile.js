@@ -9,10 +9,13 @@ var PugDocMarkdown = require('pug-doc-markdown');
 var PugDocHTML = require('pug-doc-html');
 var clean = require('gulp-clean');
 
-var templateHelper = require('./src/helper/templateHelper.js');
-var modelFilePath = './demo/model.js';
-var pugBaseUrl = './dist';
-var srcFiles = './demo/**/*.html.pug';
+var templateHelper = require('./src/js/templateHelper.js');
+
+var demoModelFilePath = './demo/model.js';
+var demoPugBaseUrl = './dist';
+var demoSrcFiles = './demo/**/*.html.pug';
+
+var docInputSrc = './dist/**/*.pug';
 var docDestJson = 'doc/doc.json';
 var docDestMarkdown = 'doc/doc.md';
 var docDestHtml = 'doc/output.html';
@@ -31,9 +34,9 @@ gulp.task('clean', function () {
 });
 
 gulp.task('demo', ['release'], function () {
-    var modelProvider = require(modelFilePath);
+    var modelProvider = require(demoModelFilePath);
 
-    gulp.src(srcFiles)
+    gulp.src(demoSrcFiles)
     .pipe(rename(function (path) {
         path.extname = '';
     }))
@@ -51,7 +54,7 @@ gulp.task('demo', ['release'], function () {
         return result;
     }))
     .pipe(pug({
-        basedir: pugBaseUrl,
+        basedir: demoPugBaseUrl,
         client: false,
         pretty: true,
         compileDebug: false,
@@ -68,14 +71,14 @@ gulp.task('release', function () {
       .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('doc', function (cb) {
+gulp.task('doc', ['release'], function (cb) {
     pugDoc({
-        input: './src/**/*.pug',
+        input: docInputSrc,
         output: docDestJson,
         complete: function () {
             var stream = new PugDocHTML({
                 output: docDestHtml,
-                input: '../../' + docDestJson
+                input: '../../' + docDestJson  // 这里比较坑，是相对于那个库的路径
             });
 
             stream.on('complete', function () {
@@ -84,10 +87,6 @@ gulp.task('doc', function (cb) {
             //var stream = new PugDocMarkdown({
             //    output: destMarkdown,
             //    input: '../../' + destJson
-            //});
-
-            //stream.on('complete', function () {
-            //    console.log('complete');
             //});
         },
         globals: {

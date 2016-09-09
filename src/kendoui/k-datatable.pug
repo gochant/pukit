@@ -12,7 +12,7 @@ mixin kendo-datatable-tpl-header
       block
 
 mixin kendo-datatable-tpl-template
-  +script-template.tpl-template
+  +script-template.tpl-row
     tr&attributes(attributes)
       block
         
@@ -45,7 +45,7 @@ mixin td-for(model, fields)
 mixin kendo-datatable-for(model, fields, bind, hasPager)
   - var idInterp = '#= '+ (model.id || 'id') +' #' 
   - hasPager || (hasPager = false)
-  +kendo-datatable(bind)
+  +kendo-datatable(bind)&attributes(attributes)
     +kendo-datatable-tpl-header
       +th-for(model, fields) 
     +kendo-datatable-tpl-template(data-id=idInterp)

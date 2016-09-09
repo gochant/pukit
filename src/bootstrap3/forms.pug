@@ -1,8 +1,25 @@
+
+//- @pugdoc
+  name: fieldset
+  description: 表单字段组
+  arguments:
+    - {string} title - 组标题
+  examples:
+    - |
+      +fieldset('基本信息')
 mixin fieldset(title)
   fieldset&attributes(attributes)
     legend #{title}
     block
 
+//- @pugdoc
+  name: control-label
+  description: 控件标签
+  arguments:
+    - {string} text - 标签文本
+  examples:
+    - |
+      +control-label('名称')
 mixin control-label(text)
   label.control-label&attributes(attributes)
     | #{text}

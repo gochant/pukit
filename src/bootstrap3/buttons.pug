@@ -1,17 +1,45 @@
+//- @pugdoc
+  name: btn
+  description: 按钮
+  arguments:
+  examples: |
+    +btn
+    +btn.btn-success
+mixin btn
+  - if(attributes.class == null) { attributes.class = ['btn-default'] }
+  a.btn&attributes(attributes)
+    block
+
+//- @pugdoc
+  name: btn-primary
+  description: 主要按钮
+  arguments:
+  examples: |
+    +btn-primary
+mixin btn-primary
+  +btn.btn-primary&attributes(attributes)
+    block
+
+//- @pugdoc
+  name: btn-toolbar
+  description: 按钮工具条
+  arguments:
+    - {string} [size] - 工具条内的按钮大小: xs, sm, lg
+  examples:
+    - +btn-toolbar
+    - +btn-toolbar('sm')
 mixin btn-toolbar(size)
   - var cls = size ? 'btn-toolbar-' + size : undefined;
   .btn-toolbar(class=[cls])&attributes(attributes)
     block
 
+//- @pugdoc
+  name: btn-group
+  description: 按钮组
+  arguments:
+  examples: |
+    +btn-group
+      +btn
 mixin btn-group
   .btn-group&attributes(attributes)
-    block
-
-mixin btn
-  - if(attributes['class'] == null) { attributes = { 'class': ['btn-default']  } }
-  a.btn&attributes(attributes)
-    block
-
-mixin btn-primary
-  +btn.btn-primary&attributes(attributes)
     block

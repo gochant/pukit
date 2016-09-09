@@ -2,9 +2,16 @@ mixin textblock(name)
   - var bind = name ? 'text: data.' + name : null;
   span.form-control(data-bind=bind)&attributes(attributes)
 
-mixin textbox(name)
+mixin textbox-password(name)
+  +textbox(name, 'password')&attributes(attributes)
+
+mixin textbox-email(name)
+  +textbox(name, 'email')&attributes(attributes)
+
+mixin textbox(name, type)
+  - type || (type = 'text')
   - var bind = name ? 'value: data.' + name : null;
-  input.form-control(type='text', data-bind=bind, name=name)&attributes(attributes)
+  input.form-control(type=type, data-bind=bind, name=name)&attributes(attributes)
 
 mixin textarea(name)
   - var bind = 'value: data.' + name
@@ -24,7 +31,7 @@ mixin checkboxlist(name, data)
       label.checkbox-inline
         input(type='checkbox', data-bind=bind, value=item.value)&attributes(attributes)
         | #{item.name}
-	    
+
 mixin combobox(name)
   - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='combobox', data-text-field='name',
@@ -100,6 +107,10 @@ mixin editor(name, text, ui, data)
       +checkboxlist(name, data)&attributes(attributes)
     when 'select'
       +select(name, data)&attributes(attributes)
+    when 'password'
+      +textbox-password(name, data)&attributes(attributes)
+    when 'email'
+      +textbox-email(name, data)&attributes(attributes)
     when 'textbox'
     default
       +textbox(name, data)&attributes(attributes)

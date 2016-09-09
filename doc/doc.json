@@ -1,0 +1,82 @@
+[
+  {
+    "meta": {
+      "name": "nav",
+      "decription": "normal navigation"
+    },
+    "file": "dist\\mixin.pug",
+    "source": "mixin nav\r\n  ul.nav(role='tablist')&attributes(attributes)\r\n    block\r",
+    "output": "mixin nav\r\n  ul.nav(role='tablist')&attributes(attributes)\r\n    block\r"
+  },
+  {
+    "meta": {
+      "name": "nav-item",
+      "description": "nav item",
+      "arguments": [
+        {
+          "name": "href",
+          "description": "link address",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} href - link address"
+        },
+        {
+          "name": "active",
+          "description": "is active",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} active - is active"
+        },
+        {
+          "name": "toggle",
+          "description": "add `(data-toggle='tab')`",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} toggle - add `(data-toggle='tab')`"
+        }
+      ],
+      "examples": [
+        "+nav-item('#', true, true)"
+      ]
+    },
+    "file": "dist\\mixin.pug",
+    "source": "mixin nav-item(href, active, toggle)\r\n  - if(href == null){ href = 'javascript:;'; }\r\n  - var cls = active === true ? 'active' : undefined\r\n    li.nav-item(role='presentation', class=cls)&attributes(attributes)\r\n      if toggle\r\n        a.nav-link(role='tab', data-toggle='tab', href=href)\r\n          block\r\n      else\r\n        a.nav-link(href=href)\r\n          block\r",
+    "output": "mixin nav-item(href, active, toggle)\r\n  - if(href == null){ href = 'javascript:;'; }\r\n  - var cls = active === true ? 'active' : undefined\r\n    li.nav-item(role='presentation', class=cls)&attributes(attributes)\r\n      if toggle\r\n        a.nav-link(role='tab', data-toggle='tab', href=href)\r\n          block\r\n      else\r\n        a.nav-link(href=href)\r\n          block\r\n+nav-item('#', true, true)"
+  },
+  {
+    "meta": {
+      "name": "nav-toggle-item",
+      "description": "nav toggle item",
+      "arguments": [
+        {
+          "name": "href",
+          "description": "link address",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} href - link address"
+        },
+        {
+          "name": "active",
+          "description": "is active",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} active - is active"
+        }
+      ],
+      "examples": "+nav-toggle-item('#', true)\n"
+    },
+    "file": "dist\\mixin.pug",
+    "source": "mixin nav-toggle-item(href, active)\r\n  +nav-item(href || '#', active, true)&attributes(attributes)\r\n    block\r",
+    "output": "mixin nav-toggle-item(href, active)\r\n  +nav-item(href || '#', active, true)&attributes(attributes)\r\n    block\r\n+nav-toggle-item('#', true)\n"
+  }
+]

@@ -1,13 +1,6 @@
-
-//- nav
-//-----------
-
 //- @pugdoc
   name: nav
   decription: normal navigation
-  examples:
-    - +nav
-
 mixin nav
   ul.nav(role='tablist')&attributes(attributes)
     block
@@ -41,7 +34,6 @@ mixin nav-item(href, active, toggle)
     - {string} href - link address
     - {boolean} active - is active
   examples: |
-    include nav.pug
     +nav-toggle-item('#', true)
 
 mixin nav-toggle-item(href, active)

@@ -1,9 +1,26 @@
 //- dropdown menu
 
+//- @pugdoc
+  name: dropdown-menu
+  description: 下拉菜单
+  arguments:
+  examples:
+    - +dropdown-menu
 mixin dropdown-menu
   ul.dropdown-menu&attributes(attributes)
     block
 
+//- @pugdoc
+  name: menu-item
+  description: 菜单项
+  arguments:
+    - {string} href - 链接
+    - {boolean} active - 是否选中
+  examples:
+    - |
+      +dropdown-menu
+        +menu-item('#', true)
+        +menu-item('#second')
 mixin menu-item(href, active)
   +nav-item(href, active)&attributes(attributes)
     block
