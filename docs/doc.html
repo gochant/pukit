@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pukit API Reference</title>
+    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/prismjs/prism.css">
+    <!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">-->
+    <style>
+      body {
+        font-family: -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+      }
+      .panel-title {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-header">
+        Pukit API Reference
+        &nbsp;<small>v0.1.0 (20)</small>
+      </h1>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#btncollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">btn&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">buttons</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="btncollapse">
+            <div class="panel-body">
+              <p class="desc">按钮</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+btn
++btn.btn-success
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;a class=&quot;btn btn-default&quot;&gt;&lt;/a&gt; 
+&lt;a class=&quot;btn btn-success&quot;&gt;&lt;/a&gt; </code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#btn-primarycollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">btn-primary&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">buttons</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="btn-primarycollapse">
+            <div class="panel-body">
+              <p class="desc">主要按钮</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+btn-primary
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;a class=&quot;btn btn-primary&quot;&gt;&lt;/a&gt; </code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#btn-toolbarcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">btn-toolbar&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">buttons</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="btn-toolbarcollapse">
+            <div class="panel-body">
+              <p class="desc">按钮工具条</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>size</td>
+                      <td>string</td>
+                      <td>工具条内的按钮大小: xs, sm, lg</td>
+                      <td>true</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+btn-toolbar</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;btn-toolbar&quot;&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+btn-toolbar('sm')</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;btn-toolbar btn-toolbar-sm&quot;&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#btn-groupcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">btn-group&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">buttons</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="btn-groupcollapse">
+            <div class="panel-body">
+              <p class="desc">按钮组</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+btn-group
+  +btn
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;btn-group&quot;&gt;
+  &lt;a class=&quot;btn btn-default&quot;&gt;&lt;/a&gt; 
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#dropdown-menucollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">dropdown-menu&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">dropdown</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="dropdown-menucollapse">
+            <div class="panel-body">
+              <p class="desc">下拉菜单</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+dropdown-menu</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;ul class=&quot;dropdown-menu&quot;&gt;
+&lt;/ul&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#menu-itemcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">menu-item&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">dropdown</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="menu-itemcollapse">
+            <div class="panel-body">
+              <p class="desc">菜单项</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>href</td>
+                      <td>string</td>
+                      <td>链接</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>active</td>
+                      <td>boolean</td>
+                      <td>是否选中</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+dropdown-menu
+  +menu-item('#', true)
+  +menu-item('#second')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;ul class=&quot;dropdown-menu&quot;&gt;
+  &lt;li class=&quot;nav-item active&quot; role=&quot;presentation&quot;&gt;
+    &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;&lt;/a&gt; 
+  &lt;/li&gt;
+  &lt;li class=&quot;nav-item&quot; role=&quot;presentation&quot;&gt;
+    &lt;a class=&quot;nav-link&quot; href=&quot;#second&quot;&gt;&lt;/a&gt; 
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#fieldsetcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">fieldset&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">forms</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="fieldsetcollapse">
+            <div class="panel-body">
+              <p class="desc">表单字段组</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>title</td>
+                      <td>string</td>
+                      <td>组标题</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+fieldset('基本信息')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;fieldset&gt;
+  &lt;legend&gt;基本信息&lt;/legend&gt;
+&lt;/fieldset&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#control-labelcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">control-label&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">forms</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="control-labelcollapse">
+            <div class="panel-body">
+              <p class="desc">控件标签</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>text</td>
+                      <td>string</td>
+                      <td>标签文本</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+control-label('名称')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;label class=&quot;control-label&quot;&gt;
+  名称&lt;/label&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#control-label-forcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">control-label-for&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">forms</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="control-label-forcollapse">
+            <div class="panel-body">
+              <p class="desc">模型控件标签</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>name</td>
+                      <td>string</td>
+                      <td>字段名称</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>model</td>
+                      <td>Object</td>
+                      <td>模型</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+control-label-for('name', { fields: { name: { text: '名称' } } })
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;label class=&quot;control-label&quot;&gt;
+  名称&lt;/label&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#form-controlcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">form-control&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">forms</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="form-controlcollapse">
+            <div class="panel-body">
+              <p class="desc">表单控件</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>type</td>
+                      <td>string</td>
+                      <td>控件类型，eg：text， email， ...</td>
+                      <td>true</td>
+                      <td>'text'</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+form-control
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;input type=&quot;text&quot; /&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#rowcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">row&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">grid</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="rowcollapse">
+            <div class="panel-body">
+              <p class="desc">bootstrap grid 布局中的 row</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+row
+  div
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#colcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">col&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">grid</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="colcollapse">
+            <div class="panel-body">
+              <p class="desc">grid 中的 col</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>num</td>
+                      <td>string,number</td>
+                      <td>数字</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>size</td>
+                      <td>string</td>
+                      <td>尺寸</td>
+                      <td>true</td>
+                      <td>'sm'</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+col(3, 'xs')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;col-xs-3&quot;&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#rightcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">right&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">helper</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="rightcollapse">
+            <div class="panel-body">
+              <p class="desc">右浮动</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+right
+  div
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;pull-right&quot;&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#caretcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">caret&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">helper</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="caretcollapse">
+            <div class="panel-body">
+              <p class="desc">下拉箭头</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+caret
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt; </code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#input-groupcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">input-group&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">input</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="input-groupcollapse">
+            <div class="panel-body">
+              <p class="desc">输入框组</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+input-group
+  .form-group
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;input-group&quot;&gt;
+  &lt;div class=&quot;form-group&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#searchbox-smcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">searchbox-sm&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">input</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="searchbox-smcollapse">
+            <div class="panel-body">
+              <p class="desc">搜索框（小尺寸，定宽）</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>placeholder</td>
+                      <td>string</td>
+                      <td>占位文本</td>
+                      <td>true</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>action</td>
+                      <td>string</td>
+                      <td>按钮触发动作名称</td>
+                      <td>true</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+searchbox-sm('请输入文本...', 'query')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;input-group input-group-sm input-md-width&quot;&gt;
+  &lt;input class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;请输入文本...&quot; /&gt;&lt;span class=&quot;input-group-btn&quot;&gt;&lt;a class=&quot;btn btn-default&quot; data-action=&quot;query&quot;&gt;&lt;i class=&quot;fa fa-search&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;/span&gt; 
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#navcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">nav&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">navs</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="navcollapse">
+            <div class="panel-body">
+              <p class="desc"></p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+nav
+  +nav-item('#test1', true) Nav1
+  +nav-item('#test2') Nav2
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;ul class=&quot;nav&quot; role=&quot;tablist&quot;&gt;
+  &lt;li class=&quot;nav-item active&quot; role=&quot;presentation&quot;&gt;
+    &lt;a class=&quot;nav-link&quot; href=&quot;#test1&quot;&gt;Nav1&lt;/a&gt; 
+  &lt;/li&gt;
+  &lt;li class=&quot;nav-item&quot; role=&quot;presentation&quot;&gt;
+    &lt;a class=&quot;nav-link&quot; href=&quot;#test2&quot;&gt;Nav2&lt;/a&gt; 
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#nav-itemcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">nav-item&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">navs</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="nav-itemcollapse">
+            <div class="panel-body">
+              <p class="desc">nav item</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>href</td>
+                      <td>string</td>
+                      <td>link address</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>active</td>
+                      <td>boolean</td>
+                      <td>is active</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>toggle</td>
+                      <td>boolean</td>
+                      <td>add `(data-toggle='tab')`</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+nav-item('#', true, true)</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;li class=&quot;nav-item active&quot; role=&quot;presentation&quot;&gt;
+  &lt;a class=&quot;nav-link&quot; role=&quot;tab&quot; data-toggle=&quot;tab&quot; href=&quot;#&quot;&gt;&lt;/a&gt; 
+&lt;/li&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#nav-toggle-itemcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">nav-toggle-item&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">navs</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="nav-toggle-itemcollapse">
+            <div class="panel-body">
+              <p class="desc">nav toggle item</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>href</td>
+                      <td>string</td>
+                      <td>link address</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>active</td>
+                      <td>boolean</td>
+                      <td>is active</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+nav-toggle-item('#', true)
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;li class=&quot;nav-item active&quot; role=&quot;presentation&quot;&gt;
+  &lt;a class=&quot;nav-link&quot; role=&quot;tab&quot; data-toggle=&quot;tab&quot; href=&quot;#&quot;&gt;&lt;/a&gt; 
+&lt;/li&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#tabscollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">tabs&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">navs</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="tabscollapse">
+            <div class="panel-body">
+              <p class="desc">bootstrap 选项卡</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+nav-toggle-item('#', true)
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;li class=&quot;nav-item active&quot; role=&quot;presentation&quot;&gt;
+  &lt;a class=&quot;nav-link&quot; role=&quot;tab&quot; data-toggle=&quot;tab&quot; href=&quot;#&quot;&gt;&lt;/a&gt; 
+&lt;/li&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./vendor/prismjs/prism.js"></script>
+  </body>
+</html>

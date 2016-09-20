@@ -1,0 +1,242 @@
+[
+  {
+    "meta": {
+      "name": "btn",
+      "description": "按钮",
+      "arguments": null,
+      "examples": "+btn\n+btn.btn-success\n"
+    },
+    "file": "src\\bootstrap3\\buttons.pug",
+    "source": "mixin btn\r\n  - if(attributes.class == null) { attributes.class = ['btn-default'] }\r\n  a.btn&attributes(attributes)\r\n    block\r",
+    "output": "mixin btn\r\n  - if(attributes.class == null) { attributes.class = ['btn-default'] }\r\n  a.btn&attributes(attributes)\r\n    block\r\n+btn\n+btn.btn-success\n"
+  },
+  {
+    "meta": {
+      "name": "btn-primary",
+      "description": "主要按钮",
+      "arguments": null,
+      "examples": "+btn-primary\n"
+    },
+    "file": "src\\bootstrap3\\buttons.pug",
+    "source": "mixin btn-primary\r\n  +btn.btn-primary&attributes(attributes)\r\n    block\r",
+    "output": "mixin btn-primary\r\n  +btn.btn-primary&attributes(attributes)\r\n    block\r\n+btn-primary\n"
+  },
+  {
+    "meta": {
+      "name": "btn-toolbar",
+      "description": "按钮工具条",
+      "arguments": [
+        {
+          "name": "size",
+          "description": "工具条内的按钮大小: xs, sm, lg",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": true,
+          "original": "{string} [size] - 工具条内的按钮大小: xs, sm, lg"
+        }
+      ],
+      "examples": [
+        "+btn-toolbar",
+        "+btn-toolbar('sm')"
+      ]
+    },
+    "file": "src\\bootstrap3\\buttons.pug",
+    "source": "mixin btn-toolbar(size)\r\n  - var cls = size ? 'btn-toolbar-' + size : undefined;\r\n  .btn-toolbar(class=[cls])&attributes(attributes)\r\n    block\r",
+    "output": "mixin btn-toolbar(size)\r\n  - var cls = size ? 'btn-toolbar-' + size : undefined;\r\n  .btn-toolbar(class=[cls])&attributes(attributes)\r\n    block\r\n+btn-toolbar\n+btn-toolbar('sm')"
+  },
+  {
+    "meta": {
+      "name": "btn-group",
+      "description": "按钮组",
+      "arguments": null,
+      "examples": "+btn-group\n  +btn\n"
+    },
+    "file": "src\\bootstrap3\\buttons.pug",
+    "source": "mixin btn-group\r\n  .btn-group&attributes(attributes)\r\n    block\r",
+    "output": "mixin btn-group\r\n  .btn-group&attributes(attributes)\r\n    block\r\n+btn-group\n  +btn\n"
+  },
+  {
+    "meta": {
+      "name": "fieldset",
+      "description": "表单字段组",
+      "arguments": [
+        {
+          "name": "title",
+          "description": "组标题",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} title - 组标题"
+        }
+      ],
+      "examples": [
+        "+fieldset('基本信息')\n"
+      ]
+    },
+    "file": "src\\bootstrap3\\forms.pug",
+    "source": "mixin fieldset(title)\r\n  fieldset&attributes(attributes)\r\n    legend #{title}\r\n    block\r",
+    "output": "mixin fieldset(title)\r\n  fieldset&attributes(attributes)\r\n    legend #{title}\r\n    block\r\n+fieldset('基本信息')\n"
+  },
+  {
+    "meta": {
+      "name": "control-label",
+      "description": "控件标签",
+      "arguments": [
+        {
+          "name": "text",
+          "description": "标签文本",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} text - 标签文本"
+        }
+      ],
+      "examples": [
+        "+control-label('名称')\n"
+      ]
+    },
+    "file": "src\\bootstrap3\\forms.pug",
+    "source": "mixin control-label(text)\r\n  label.control-label&attributes(attributes)\r\n    | #{text}\r",
+    "output": "mixin control-label(text)\r\n  label.control-label&attributes(attributes)\r\n    | #{text}\r\n+control-label('名称')\n"
+  },
+  {
+    "meta": {
+      "name": "dropdown-menu",
+      "description": "下拉菜单",
+      "arguments": null,
+      "examples": [
+        "+dropdown-menu"
+      ]
+    },
+    "file": "src\\bootstrap3\\dropdown.pug",
+    "source": "mixin dropdown-menu\r\n  ul.dropdown-menu&attributes(attributes)\r\n    block\r",
+    "output": "mixin dropdown-menu\r\n  ul.dropdown-menu&attributes(attributes)\r\n    block\r\n+dropdown-menu"
+  },
+  {
+    "meta": {
+      "name": "menu-item",
+      "description": "菜单项",
+      "arguments": [
+        {
+          "name": "href",
+          "description": "链接",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} href - 链接"
+        },
+        {
+          "name": "active",
+          "description": "是否选中",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} active - 是否选中"
+        }
+      ],
+      "examples": [
+        "+dropdown-menu\n  +menu-item('#', true)\n  +menu-item('#second')\n"
+      ]
+    },
+    "file": "src\\bootstrap3\\dropdown.pug",
+    "source": "mixin menu-item(href, active)\r\n  +nav-item(href, active)&attributes(attributes)\r\n    block\r",
+    "output": "mixin menu-item(href, active)\r\n  +nav-item(href, active)&attributes(attributes)\r\n    block\r\n+dropdown-menu\n  +menu-item('#', true)\n  +menu-item('#second')\n"
+  },
+  {
+    "meta": {
+      "name": "nav",
+      "decription": "normal navigation",
+      "examples": "+nav\n  +nav-item('#test1', true) Nav1\n  +nav-item('#test2') Nav2\n"
+    },
+    "file": "src\\bootstrap3\\navs.pug",
+    "source": "mixin nav\r\n  ul.nav(role='tablist')&attributes(attributes)\r\n    block\r",
+    "output": "mixin nav\r\n  ul.nav(role='tablist')&attributes(attributes)\r\n    block\r\n+nav\n  +nav-item('#test1', true) Nav1\n  +nav-item('#test2') Nav2\n"
+  },
+  {
+    "meta": {
+      "name": "nav-item",
+      "description": "nav item",
+      "arguments": [
+        {
+          "name": "href",
+          "description": "link address",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} href - link address"
+        },
+        {
+          "name": "active",
+          "description": "is active",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} active - is active"
+        },
+        {
+          "name": "toggle",
+          "description": "add `(data-toggle='tab')`",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} toggle - add `(data-toggle='tab')`"
+        }
+      ],
+      "examples": [
+        "+nav-item('#', true, true)"
+      ]
+    },
+    "file": "src\\bootstrap3\\navs.pug",
+    "source": "mixin nav-item(href, active, toggle)\r\n  - if(href == null){ href = 'javascript:;'; }\r\n  - var cls = active === true ? 'active' : undefined\r\n    li.nav-item(role='presentation', class=cls)&attributes(attributes)\r\n      if toggle\r\n        a.nav-link(role='tab', data-toggle='tab', href=href)\r\n          block\r\n      else\r\n        a.nav-link(href=href)\r\n          block\r",
+    "output": "mixin nav-item(href, active, toggle)\r\n  - if(href == null){ href = 'javascript:;'; }\r\n  - var cls = active === true ? 'active' : undefined\r\n    li.nav-item(role='presentation', class=cls)&attributes(attributes)\r\n      if toggle\r\n        a.nav-link(role='tab', data-toggle='tab', href=href)\r\n          block\r\n      else\r\n        a.nav-link(href=href)\r\n          block\r\n+nav-item('#', true, true)"
+  },
+  {
+    "meta": {
+      "name": "nav-toggle-item",
+      "description": "nav toggle item",
+      "arguments": [
+        {
+          "name": "href",
+          "description": "link address",
+          "type": "string",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{string} href - link address"
+        },
+        {
+          "name": "active",
+          "description": "is active",
+          "type": "boolean",
+          "default": null,
+          "nullable": false,
+          "optional": false,
+          "original": "{boolean} active - is active"
+        }
+      ],
+      "examples": "+nav-toggle-item('#', true)\n"
+    },
+    "file": "src\\bootstrap3\\navs.pug",
+    "source": "mixin nav-toggle-item(href, active)\r\n  +nav-item(href || '#', active, true)&attributes(attributes)\r\n    block\r",
+    "output": "mixin nav-toggle-item(href, active)\r\n  +nav-item(href || '#', active, true)&attributes(attributes)\r\n    block\r\n+nav-toggle-item('#', true)\n"
+  },
+  {
+    "meta": {
+      "name": "tabs",
+      "description": "bootstrap 选项卡",
+      "arguments": null,
+      "examples": "+nav-toggle-item('#', true)\n"
+    },
+    "file": "src\\bootstrap3\\navs.pug",
+    "source": "mixin tabs\r\n  +nav('nav-tabs')&attributes(attributes)\r\n    block\r",
+    "output": "mixin tabs\r\n  +nav('nav-tabs')&attributes(attributes)\r\n    block\r\n+nav-toggle-item('#', true)\n"
+  }
+]

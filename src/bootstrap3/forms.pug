@@ -1,3 +1,4 @@
+//- forms: 表单
 
 //- @pugdoc
   name: fieldset
@@ -24,12 +25,29 @@ mixin control-label(text)
   label.control-label&attributes(attributes)
     | #{text}
 
+//- @pugdoc
+  name: control-label-for
+  description: 模型控件标签
+  arguments:
+    - {string} name - 字段名称
+    - {Object} model - 模型
+  examples:
+    - |
+      +control-label-for('name', { fields: { name: { text: '名称' } } })
 mixin control-label-for(name, model)
   -
     var field = model.fields[name]
     var text = field.text
   +control-label(text)&attributes(attributes)
 
+//- @pugdoc
+  name: form-control
+  description: 表单控件
+  arguments:
+    - {string} [type='text'] - 控件类型，eg：text， email， ...
+  examples:
+    - |
+      +form-control
 mixin form-control(type)
   - type || (type = 'text')
   input(type=type)&attributes(attributes)

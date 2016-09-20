@@ -19,6 +19,9 @@
     "gulp-data": "^1.2.1",
     "gulp-pug": "^3.0.4",
     "gulp-rename": "^1.2.2",
+    "pretty": "^1.0.0",
+    "prismjs": "^1.5.1",
+    "pug": "^2.0.0-beta6",
     "pug-doc": "^2.10.0",
     "pug-doc-html": "^1.1.0",
     "pug-doc-markdown": "^1.0.1"

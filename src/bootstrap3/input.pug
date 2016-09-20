@@ -1,5 +1,13 @@
 //- input
 
+//- @pugdoc
+  name: input-group
+  description: 输入框组
+  arguments:
+  examples:
+    - |
+      +input-group
+        .form-group
 mixin input-group
   .input-group&attributes(attributes)
     block
@@ -23,6 +31,15 @@ mixin searchbox(placeholder, action)
   +input-group-with-btn(placeholder)&attributes(attributes)
     +btn-search-icon()(data-action=action)
 
+//- @pugdoc
+  name: searchbox-sm
+  description: 搜索框（小尺寸，定宽）
+  arguments:
+    - {string} [placeholder] - 占位文本
+    - {string} [action] - 按钮触发动作名称
+  examples:
+    - |
+      +searchbox-sm('请输入文本...', 'query')
 mixin searchbox-sm(placeholder, action)
   +searchbox(placeholder, action).input-group-sm.input-md-width&attributes(attributes)
     block

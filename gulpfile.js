@@ -8,6 +8,8 @@ var concat = require('gulp-concat');
 var PugDocMarkdown = require('pug-doc-markdown');
 var PugDocHTML = require('pug-doc-html');
 var clean = require('gulp-clean');
+var fs = require('fs');
+var packageMeta = JSON.parse(fs.readFileSync('./package.json'));
 
 var templateHelper = require('./src/js/templateHelper.js');
 
@@ -15,13 +17,11 @@ var demoModelFilePath = './demo/model.js';
 var demoPugBaseUrl = './dist';
 var demoSrcFiles = './demo/**/*.html.pug';
 
-var docInputSrc = './dist/**/*.pug';
-var docDestJson = 'doc/doc.json';
-var docDestMarkdown = 'doc/doc.md';
-var docDestHtml = 'doc/output.html';
+var docInputSrc = './src/**/*.pug';
+var docDestJson = './build/doc.json';
 
 function getContextName(path) {
-    var r = /.*[\/|\\]([\w|-]*)[\/|\\][^\/]*$/g.exec(path);
+    var r = /.*[\/\\]([\w-]*)[\/\\][^\/]*$/g.exec(path);
     if (r && r.length >= 2) {
         return r[1];
     }
@@ -57,7 +57,7 @@ gulp.task('demo', ['release'], function () {
         basedir: demoPugBaseUrl,
         client: false,
         pretty: true,
-        compileDebug: false,
+        compileDebug: true,
         debug: false,
         cache: false
     }))
@@ -71,23 +71,21 @@ gulp.task('release', function () {
       .pipe(gulp.dest('./dist/'));
 });
 
+var genHtml = require('./build/genHtml.js');
+
 gulp.task('doc', ['release'], function (cb) {
     pugDoc({
         input: docInputSrc,
         output: docDestJson,
         complete: function () {
-            var stream = new PugDocHTML({
-                output: docDestHtml,
-                input: '../../' + docDestJson  // 这里比较坑，是相对于那个库的路径
+            genHtml({
+                template: './build/template.pug',
+                input: docDestJson,
+                output: './docs/doc.html',
+                data: {
+                    version: packageMeta.version
+                }
             });
-
-            stream.on('complete', function () {
-                console.log('complete');
-            });
-            //var stream = new PugDocMarkdown({
-            //    output: destMarkdown,
-            //    input: '../../' + destJson
-            //});
         },
         globals: {
             myGlobal: 'foo'

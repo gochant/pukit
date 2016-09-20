@@ -13,7 +13,7 @@
     <div class="form-group row">
       <label class="control-label col-xs-3">Name</label>
       <div class="col-xs-9 form-control-container">
-        <input class="form-control" type="text" data-bind="value: data.name" name="name"/>
+        <input class="form-control" type="{}" data-bind="value: data.name" name="name"/>
       </div>
     </div>
     <div class="form-group row">
@@ -25,13 +25,13 @@
     <div class="form-group row">
       <label class="control-label col-xs-3">Gender</label>
       <div class="col-xs-9 form-control-container">
-        <input class="form-control" type="text" data-bind="value: data.gender" name="gender"/>
+        <input class="form-control" type="{}" data-bind="value: data.gender" name="gender"/>
       </div>
     </div>
     <div class="form-group row">
       <label class="control-label col-xs-3">Is Active</label>
       <div class="col-xs-9 form-control-container">
-        <input class="form-control" type="text" data-bind="value: data.isActive" name="isActive"/>
+        <input class="form-control" type="{}" data-bind="value: data.isActive" name="isActive"/>
       </div>
     </div>
     <div data-role="datatable" data-auto-bind="false" data-bind="data-bind: source: data.People">
@@ -42,13 +42,14 @@
           <th class="boolean" data-type="boolean" data-prop="isActive">Is Active</th> 
         </tr>
       </script>
-      <script class="tpl-template" type="text/x-template">
-        <tr data-id="#= Id #">
+      <script class="tpl-row" type="text/x-template">
+        <tr data-id="#= id #">
           <td title="#: name != null ? name : '-' #">#: name != null ? name : '-' #</td>
           <td title="#: birth != null ?  kendo.toString(kendo.parseDate(birth), 'yyyy/MM/dd'): '-' #">#: birth != null ?  kendo.toString(kendo.parseDate(birth), 'yyyy/MM/dd'): '-' #</td>
           <td title="#: isActive ? '是': '否' #">#: isActive ? '是': '否' #</td>
         </tr>
       </script>
     </div>
+    <input data-role="datepicker" data-bind="xxxx"/>
   </body>
 </html>

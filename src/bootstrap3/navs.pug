@@ -1,6 +1,11 @@
 //- @pugdoc
   name: nav
   decription: normal navigation
+  examples: |
+    +nav
+      +nav-item('#test1', true) Nav1
+      +nav-item('#test2') Nav2
+
 mixin nav
   ul.nav(role='tablist')&attributes(attributes)
     block
@@ -40,10 +45,15 @@ mixin nav-toggle-item(href, active)
   +nav-item(href || '#', active, true)&attributes(attributes)
     block
 
-//- tabs
-
+//- @pugdoc
+  name: tabs
+  description: bootstrap 选项卡
+  arguments:
+  examples: |
+    +nav-toggle-item('#', true)
 mixin tabs
-  +nav('nav-tabs')
+  +nav('nav-tabs')&attributes(attributes)
+    block
 
 mixin tab-item(href, active)
   +nav-item(href, active, true)

@@ -1,9 +1,26 @@
 //- --------------- grid layout
 
+//- @pugdoc
+  name: row
+  description: bootstrap grid 布局中的 row
+  arguments:
+  examples:
+    - |
+      +row
+        div
 mixin row
-  .row
+  .row&attributes(attributes)
     block
 
+//- @pugdoc
+  name: col
+  description: grid 中的 col
+  arguments:
+    - {string|number} num - 数字
+    - {string} [size='sm'] - 尺寸
+  examples:
+    - |
+      +col(3, 'xs')
 mixin col(num, size)
   - size || (size = 'sm')
   - var cls = 'col-' + size + '-' + num

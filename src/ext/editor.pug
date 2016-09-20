@@ -40,6 +40,9 @@ mixin combobox(name)
 mixin k-invalid-msg(name)
   span.k-invalid-msg(data-for=name)
 
+mixin file(name)
+  input(type='file', data-role='file', name=name)&attributes(attributes)
+
 mixin dropdownlist(name)
   - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='dropdownlist', data-text-field='name',
@@ -116,7 +119,7 @@ mixin editor(name, text, ui, data)
       +textbox(name, data)&attributes(attributes)
 
 mixin editor-for(name, model, data, style)
-  - 
+  -
     var field = model.fields[name]
     var uiHintMap = { 'string': 'textbox', 'date': 'date', 'number': 'numeric' }
     if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
@@ -143,7 +146,7 @@ mixin editor-for-h(name, model, data)
   +editor-for(name, model, data, 'h')&attributes(attributes)
 
 mixin editor-for-model(model, fields, data)
-  - 
+  -
     if(fields == null){
       fields = Object.keys(model.fields).filter(function(value){
         return !model.fields[value].calculate

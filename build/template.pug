@@ -1,0 +1,76 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Pukit API Reference
+    link(rel='stylesheet', href='./vendor/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='./vendor/prismjs/prism.css')
+    // <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    style.
+      body {
+        font-family: -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+      }
+      .panel-title {
+        font-size: 20px;
+      }
+  body
+    .container
+      h1.page-header
+        | Pukit API Reference
+        | &nbsp;
+        small
+          | v#{version} (#{count})
+      .panel-group#accordion
+        each item in data
+          - var id = item.meta.name + 'collapse';
+          - var groupName = /[\\\/]([\w-]*)\.pug/.exec(item.file)[1];
+          .panel.panel-default
+            .panel-heading(style='padding:0')
+              a.clearfix(data-toggle='collapse', data-parent='#accordion', href='#' + id, style='display:block;padding: 10px 15px;')
+                h2.panel-title.pull-left
+                  | #{item.meta.name}&nbsp;
+                  small
+                .text-muted.pull-right
+                  | #{groupName}
+              //button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)
+              //  span.glyphicon.glyphicon-menu-down
+            .panel-collapse.collapse(id = id)
+              .panel-body
+                p.desc
+                  | #{item.meta.description}
+                .arguments
+                  if item.meta.arguments != null
+                    h3 Arguments
+                    table.table.table-bordered.table-condensed
+                      thead
+                        tr
+                          th Name
+                          th Type
+                          th Description
+                          th Optional
+                          th Default
+                      tbody
+                        each arg in item.meta.arguments
+                          tr
+                            td #{arg.name}
+                            td #{arg.type}
+                            td #{arg.description}
+                            td #{arg.optional}
+                            td #{arg.default}
+                .examples
+                  if item.meta.examples != null
+                    h3 Examples
+                    each example in item.meta.examples
+                      .row
+                        .col-xs-6.src
+                          pre
+                            code.language-jade
+                              | #{example.src}
+                        .col-xs-6.dest
+                          pre
+                            code.language-html
+                              | #{example.dest}
+
+    script(src='./vendor/jquery/jquery.min.js')
+    script(src='./vendor/bootstrap/js/bootstrap.min.js')
+    script(src='./vendor/prismjs/prism.js')
