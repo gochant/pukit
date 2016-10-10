@@ -19,7 +19,7 @@
     <div class="container">
       <h1 class="page-header">
         Pukit API Reference
-        &nbsp;<small>v0.1.0 (20)</small>
+        &nbsp;<small>v0.1.0 (23)</small>
       </h1>
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
@@ -257,6 +257,92 @@
           </div>
         </div>
         <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#rowcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">row&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">grid</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="rowcollapse">
+            <div class="panel-body">
+              <p class="desc">bootstrap grid 布局中的 row</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+row
+  div
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#colcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">col&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">grid</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="colcollapse">
+            <div class="panel-body">
+              <p class="desc">grid 中的 col</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>num</td>
+                      <td>string,number</td>
+                      <td>数字</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>size</td>
+                      <td>string</td>
+                      <td>尺寸</td>
+                      <td>true</td>
+                      <td>'sm'</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+col(3, 'xs')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;col-xs-3&quot;&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
           <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#fieldsetcollapse" style="display:block;padding: 10px 15px">
               <h2 class="panel-title pull-left">fieldset&nbsp;<small></small></h2>
               <div class="text-muted pull-right">forms</div></a>
@@ -460,92 +546,6 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#rowcollapse" style="display:block;padding: 10px 15px">
-              <h2 class="panel-title pull-left">row&nbsp;<small></small></h2>
-              <div class="text-muted pull-right">grid</div></a>
-            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
-            <!--  span.glyphicon.glyphicon-menu-down-->
-          </div>
-          <div class="panel-collapse collapse" id="rowcollapse">
-            <div class="panel-body">
-              <p class="desc">bootstrap grid 布局中的 row</p>
-              <div class="arguments">
-              </div>
-              <div class="examples">
-                <h3>Examples</h3>
-                <div class="row">
-                  <div class="col-xs-6 src">
-                    <pre><code class="language-jade">+row
-  div
-</code></pre>
-                  </div>
-                  <div class="col-xs-6 dest">
-                    <pre><code class="language-html">&lt;div class=&quot;row&quot;&gt;
-  &lt;div&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#colcollapse" style="display:block;padding: 10px 15px">
-              <h2 class="panel-title pull-left">col&nbsp;<small></small></h2>
-              <div class="text-muted pull-right">grid</div></a>
-            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
-            <!--  span.glyphicon.glyphicon-menu-down-->
-          </div>
-          <div class="panel-collapse collapse" id="colcollapse">
-            <div class="panel-body">
-              <p class="desc">grid 中的 col</p>
-              <div class="arguments">
-                <h3>Arguments</h3>
-                <table class="table table-bordered table-condensed">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Description</th>
-                      <th>Optional</th>
-                      <th>Default</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>num</td>
-                      <td>string,number</td>
-                      <td>数字</td>
-                      <td>false</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>size</td>
-                      <td>string</td>
-                      <td>尺寸</td>
-                      <td>true</td>
-                      <td>'sm'</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="examples">
-                <h3>Examples</h3>
-                <div class="row">
-                  <div class="col-xs-6 src">
-                    <pre><code class="language-jade">+col(3, 'xs')
-</code></pre>
-                  </div>
-                  <div class="col-xs-6 dest">
-                    <pre><code class="language-html">&lt;div class=&quot;col-xs-3&quot;&gt;
-&lt;/div&gt;</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
           <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#rightcollapse" style="display:block;padding: 10px 15px">
               <h2 class="panel-title pull-left">right&nbsp;<small></small></h2>
               <div class="text-muted pull-right">helper</div></a>
@@ -682,6 +682,126 @@
                   <div class="col-xs-6 dest">
                     <pre><code class="language-html">&lt;div class=&quot;input-group input-group-sm input-md-width&quot;&gt;
   &lt;input class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;请输入文本...&quot; /&gt;&lt;span class=&quot;input-group-btn&quot;&gt;&lt;a class=&quot;btn btn-default&quot; data-action=&quot;query&quot;&gt;&lt;i class=&quot;fa fa-search&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;/span&gt; 
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#modalcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">modal&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">modal</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="modalcollapse">
+            <div class="panel-body">
+              <p class="desc">模态对话框</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+modal
+  div
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;modal fade&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot;&gt;
+    &lt;div class=&quot;modal-content fn-wnd&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#modal-closecollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">modal-close&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">modal</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="modal-closecollapse">
+            <div class="panel-body">
+              <p class="desc">对话框关闭按钮</p>
+              <div class="arguments">
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+modal-close
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;button class=&quot;close&quot; data-dismiss=&quot;modal&quot;&gt;
+  &lt;span&gt;×&lt;/span&gt; &lt;/button&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="padding:0"><a class="clearfix" data-toggle="collapse" data-parent="#accordion" href="#modal-headingcollapse" style="display:block;padding: 10px 15px">
+              <h2 class="panel-title pull-left">modal-heading&nbsp;<small></small></h2>
+              <div class="text-muted pull-right">modal</div></a>
+            <!--button.btn.btn-default.btn-xs.pull-right(data-toggle='collapse', data-parent='#accordion', data-target='#' + id)-->
+            <!--  span.glyphicon.glyphicon-menu-down-->
+          </div>
+          <div class="panel-collapse collapse" id="modal-headingcollapse">
+            <div class="panel-body">
+              <p class="desc">对话框头部</p>
+              <div class="arguments">
+                <h3>Arguments</h3>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>title</td>
+                      <td>string</td>
+                      <td>标题</td>
+                      <td>false</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>subtitle</td>
+                      <td>string</td>
+                      <td>副标题</td>
+                      <td>true</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="examples">
+                <h3>Examples</h3>
+                <div class="row">
+                  <div class="col-xs-6 src">
+                    <pre><code class="language-jade">+modal-heading('Title', 'Subtitle')
+</code></pre>
+                  </div>
+                  <div class="col-xs-6 dest">
+                    <pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;button class=&quot;close&quot; data-dismiss=&quot;modal&quot;&gt;  &lt;span&gt;×&lt;/span&gt; &lt;/button&gt;
+  &lt;div class=&quot;navbar-brand&quot;&gt;Title &amp;nbsp;
+    &lt;small&gt;Subtitle&lt;/small&gt; 
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                   </div>
                 </div>
